@@ -6,7 +6,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "deploy": "yarn run build && aws s3 cp dist/ s3://bcbackcountryweather.com --recursive",
     "eject": "react-scripts eject"
   },
   "dependencies": {
