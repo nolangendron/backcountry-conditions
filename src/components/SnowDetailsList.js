@@ -5,7 +5,6 @@ const SnowDetailsList = styled("div")`
 display: flex;
 flex-wrap: nowrap;
 `
-
 export const SnowDetailsList = () => {
   return (
     <SnowDetailsList>
