@@ -13,7 +13,7 @@ const Container = styled("header")`
     align-items: center;
     height: $admin-header-height;
     color: #505865;
-    background-color: #fff;
+    background-color: white;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     position: relative;
 
