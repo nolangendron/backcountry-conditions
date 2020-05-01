@@ -16,7 +16,6 @@ const Container = styled("header")`
     background-color: white;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     position: relative;
-
     h1{
       font-size: 2.4em;
       padding-right: 10px;
