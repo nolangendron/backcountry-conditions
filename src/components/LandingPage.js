@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 import img from '../images/Thar_Peak.jpg';
 import SplitText from './SplitText'
 import Select from 'react-select';
@@ -18,17 +19,48 @@ height: 100vh;
 }   
 
 .bgImage {
+  position: relative;
+  z-index: 1;
   grid-column: 7 / span 6;
-  height: 100vh;
   background: 
-  linear-gradient(to bottom, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%),
-  linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
-  url(${img}) no-repeat;
+    linear-gradient(to bottom, 
+      rgba(255, 255, 255, 0.5) 0%, 
+      rgba(255, 255, 255, 1) 50%, 
+      rgba(255, 255, 255, 1) 100%),
+    linear-gradient(to right, 
+      rgba(255, 255, 255, 1) 0%, 
+      rgba(255, 255, 255, .3) 50%, 
+      rgba(255, 255, 255, 0) 100%),
+    url(${img}) no-repeat;
+  background-size: cover;
+}
+
+.bgImage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to bottom, 
+      rgba(255, 255, 255, 0) 0%, 
+      rgba(255, 255, 255, .5) 50%, 
+      rgba(255, 255, 255, .5) 100%),
+    linear-gradient(to right, 
+      rgba(255, 255, 255, 1) 0%, 
+      rgba(255, 255, 255, .3) 50%, 
+      rgba(255, 255, 255, 0) 100%),
+    url(${img}) no-repeat;
+  background-size: cover;
+  opacity: ${props => props.selected ? 1 : 0};
+  transition: opacity 2s;
+  z-index: -1;
 }
 
 .select {
   width: 300px;
-  margin-top: 60vh;
+  margin-top: 70vh;
   margin-left: auto;
   margin-right: auto;
 }
@@ -50,11 +82,11 @@ const LandingPage = () => {
 
   const { selectedOption } = state;
   return (
-    <Container>
+    <Container selected={selectedOption}>
       <div className="title">
         <h1><SplitText copy="BC" role="heading" count={0.5} /></h1>
         <h1><SplitText copy="Backcountry" role="heading" count={.7} /></h1>
-        <h1><SplitText copy="Weather" role="heading" count={1.8} /></h1>
+        <h1><SplitText copy="Weather" role="heading" count={1.6} /></h1>
       </div>
 
       <div className="bgImage">

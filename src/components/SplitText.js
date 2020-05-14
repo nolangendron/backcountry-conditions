@@ -4,8 +4,7 @@ import styled from "@emotion/styled";
 const Container = styled('div')`
 .span {
   position: relative;
-  animation: move-text-color 0.75s forwards;
-  /* bottom: -1em; */
+  animation: move-text-color 0.25s forwards;
   opacity: 0;
 }
 
