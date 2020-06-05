@@ -1,8 +1,27 @@
-import { data } from './index';
+import { data } from "./index";
 
-const { littleBearData, coqSummitData, cayooshSummitData, blowDownMidData, foundationMinesData, allisonPassData, abbottData, rogersPassData } = data;
+const {
+  littleBearData,
+  coqSummitData,
+  cayooshSummitData,
+  blowDownMidData,
+  foundationMinesData,
+  allisonPassData,
+  abbottData,
+  rogersPassData,
+} = data;
 
 export const stationNumbers = {
+  none: {
+    nameLower: "",
+    elevationLower: "",
+    nameUpper: "",
+    elevationUpper: "",
+    lower: null,
+    upper: null,
+    seasonDataLower: null,
+    seasonDataUpper: null,
+  },
   coquihalla: {
     nameLower: "Coquihalla Summit",
     elevationLower: "1220m",
@@ -11,7 +30,7 @@ export const stationNumbers = {
     lower: 15,
     upper: 17,
     seasonDataLower: coqSummitData,
-    seasonDataUpper: littleBearData
+    seasonDataUpper: littleBearData,
   },
   duffey: {
     nameLower: "Cayoosh Summit",
@@ -21,9 +40,9 @@ export const stationNumbers = {
     lower: 74,
     upper: 20,
     seasonDataLower: cayooshSummitData,
-    seasonDataUpper: blowDownMidData
+    seasonDataUpper: blowDownMidData,
   },
-  manning: {
+  manningPark: {
     nameLower: "Allison Pass",
     elevationLower: "1340m",
     nameUpper: "Foundation Mines",
@@ -31,7 +50,7 @@ export const stationNumbers = {
     lower: 73,
     upper: 13,
     seasonDataLower: allisonPassData,
-    seasonDataUpper: foundationMinesData
+    seasonDataUpper: foundationMinesData,
   },
   rogerspass: {
     nameLower: "Rogers Pass",
@@ -41,6 +60,6 @@ export const stationNumbers = {
     lower: 98,
     upper: 91,
     seasonDataLower: rogersPassData,
-    seasonDataUpper: abbottData
-  }
+    seasonDataUpper: abbottData,
+  },
 };

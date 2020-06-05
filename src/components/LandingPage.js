@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { getWeatherStationData } from "../utils/apiCalls";
+import { calNewSnowLastDay } from "../utils/calNewSnowLastDay";
+import { stationNumbers } from "../data/weatherStationDetails";
 import imgLandingPage from "../images/powder2.png";
 import coquihalla from "../images/Thar_Peak.jpg";
 import duffey from "../images/duffey.jpg";
 import manning from "../images/manning.jpg";
 import SplitText from "./SplitText";
 import Select from "react-select";
+import Altitude from "./Altitude";
+import Temperature from "./Temperature";
 // import { CurrentWeather } from './CurrentWeather'
 
 const Container = styled("div")`
@@ -144,9 +148,27 @@ const images = [
 ];
 const options = [
   { value: "none", label: "Select Area...", image: imgLandingPage },
-  { value: "coquihalla", label: "Coquihalla", image: coquihalla },
-  { value: "duffey", label: "Duffey", image: duffey },
-  { value: "manningPark", label: "Manning Park", image: manning },
+  {
+    value: "coquihalla",
+    label: "Coquihalla",
+    image: coquihalla,
+    lowerStation: 15,
+    upperStation: 17,
+  },
+  {
+    value: "duffey",
+    label: "Duffey",
+    image: duffey,
+    lowerStation: 74,
+    upperStation: 20,
+  },
+  {
+    value: "manningPark",
+    label: "Manning Park",
+    image: manning,
+    lowerStation: 73,
+    upperStation: 13,
+  },
 ];
 
 const LandingPage = () => {
@@ -157,28 +179,156 @@ const LandingPage = () => {
     lowerStationData: [],
     upperStationData: [],
   });
+  const [newSnow, setNewSnow] = useState({
+    lowerStationLastDay: null,
+    lowerStationLastTwoDay: null,
+    lowerStationLastWeek: null,
+    upperStationLastDay: null,
+    upperStationLastTwoDay: null,
+    upperStationLastWeek: null,
+  });
 
   useEffect(() => {
-    getWeatherStationData(15).then((result) => {
-      let lowerStationData = result;
-      setWeatherStationData({
-        lowerStationData: lowerStationData,
-      });
-    });
+    if (state.selectedOption.value !== "none") {
+      getWeatherStationData(state.selectedOption.lowerStation).then(
+        (result) => {
+          let lowerStationData = result;
+          setWeatherStationData({
+            lowerStationData: lowerStationData,
+          });
+        }
+      );
 
-    getWeatherStationData(17).then((result) => {
-      let upperStationData = result;
-      setWeatherStationData({
-        upperStationData: upperStationData,
-      });
-    });
+      getWeatherStationData(state.selectedOption.upperStation).then(
+        (result) => {
+          let upperStationData = result;
+          setWeatherStationData({
+            upperStationData: upperStationData,
+          });
+        }
+      );
+    }
   }, [state]);
+
+  useEffect(() => {
+    const lastDaySnowLowerStation =
+      weatherStationData.lowerStationData &&
+      weatherStationData.lowerStationData.slice(0, 23);
+    const newSnowLowerStation =
+      lastDaySnowLowerStation &&
+      lastDaySnowLowerStation.map((day) => {
+        return day.snowHeight;
+      });
+    const lastTwoDaySnowLowerStation =
+      weatherStationData.lowerStationData &&
+      weatherStationData.lowerStationData.slice(0, 47);
+    const newTwoDaySnowLowerStation =
+      lastTwoDaySnowLowerStation &&
+      lastTwoDaySnowLowerStation.map((day) => {
+        return day.snowHeight;
+      });
+    const lastWeekSnowLowerStation =
+      weatherStationData.lowerStationData &&
+      weatherStationData.lowerStationData.slice(0, 160);
+    const newLastWeekSnowLowerStation =
+      lastWeekSnowLowerStation &&
+      lastWeekSnowLowerStation.map((day) => {
+        return day.snowHeight;
+      });
+
+    const getNewSnowLowerStation =
+      newSnowLowerStation && calNewSnowLastDay(newSnowLowerStation);
+    const getNewTwoSnowLowerStation =
+      newTwoDaySnowLowerStation && calNewSnowLastDay(newTwoDaySnowLowerStation);
+    const getNewLastWeekSnowLowerStation =
+      newLastWeekSnowLowerStation &&
+      calNewSnowLastDay(newLastWeekSnowLowerStation);
+    const sumNewSnowLowerStation =
+      getNewSnowLowerStation &&
+      getNewSnowLowerStation.reduce((a, b) => a + b, 0);
+    const sumNewTwoDaySnowLowerStation =
+      getNewTwoSnowLowerStation &&
+      getNewTwoSnowLowerStation.reduce((a, b) => a + b, 0);
+    const sumNewLastWeekSnowLowerStation =
+      getNewLastWeekSnowLowerStation &&
+      getNewLastWeekSnowLowerStation.reduce((a, b) => a + b, 0);
+
+    setNewSnow({
+      lowerStationLastDay: sumNewSnowLowerStation && sumNewSnowLowerStation,
+      lowerStationLastTwoDay:
+        sumNewTwoDaySnowLowerStation && sumNewTwoDaySnowLowerStation,
+      lowerStationLastWeek:
+        sumNewLastWeekSnowLowerStation && sumNewLastWeekSnowLowerStation,
+    });
+  }, [weatherStationData.lowerStationData]);
+
+  useEffect(() => {
+    const lastDaySnowUpperStation =
+      weatherStationData.upperStationData &&
+      weatherStationData.upperStationData.slice(0, 23);
+    const newSnowUpperStation =
+      lastDaySnowUpperStation &&
+      lastDaySnowUpperStation.map((day) => {
+        return day.snowHeight;
+      });
+    const lastTwoDaySnowUpperStation =
+      weatherStationData.upperStationData &&
+      weatherStationData.upperStationData.slice(0, 47);
+    const newTwoDaySnowUpperStation =
+      lastTwoDaySnowUpperStation &&
+      lastTwoDaySnowUpperStation.map((day) => {
+        return day.snowHeight;
+      });
+    const lastWeekSnowUpperStation =
+      weatherStationData.upperStationData &&
+      weatherStationData.upperStationData.slice(0, 160);
+    const newLastWeekSnowUpperStation =
+      lastWeekSnowUpperStation &&
+      lastWeekSnowUpperStation.map((day) => {
+        return day.snowHeight;
+      });
+
+    const getNewSnowUpperStation =
+      newSnowUpperStation && calNewSnowLastDay(newSnowUpperStation);
+    const getNewTwoSnowUpperStation =
+      newTwoDaySnowUpperStation && calNewSnowLastDay(newTwoDaySnowUpperStation);
+    const getNewLastWeekSnowUpperStation =
+      newLastWeekSnowUpperStation &&
+      calNewSnowLastDay(newLastWeekSnowUpperStation);
+    const sumNewSnowUpperStation =
+      getNewSnowUpperStation &&
+      getNewSnowUpperStation.reduce((a, b) => a + b, 0);
+    const sumNewTwoDaySnowUpperStation =
+      getNewTwoSnowUpperStation &&
+      getNewTwoSnowUpperStation.reduce((a, b) => a + b, 0);
+    const sumNewLastWeekSnowUpperStation =
+      getNewLastWeekSnowUpperStation &&
+      getNewLastWeekSnowUpperStation.reduce((a, b) => a + b, 0);
+
+    setNewSnow({
+      upperStationLastDay: sumNewSnowUpperStation && sumNewSnowUpperStation,
+      upperStationLastTwoDay:
+        sumNewTwoDaySnowUpperStation && sumNewTwoDaySnowUpperStation,
+      upperStationLastWeek:
+        sumNewLastWeekSnowUpperStation && sumNewLastWeekSnowUpperStation,
+    });
+  }, [weatherStationData.upperStationData]);
 
   const handleChange = (selectedOption) => {
     setState({ selectedOption });
   };
 
   const { selectedOption } = state;
+  const station = selectedOption && selectedOption.value;
+  const lowerStation =
+    weatherStationData.lowerStationData &&
+    weatherStationData.lowerStationData[0];
+  const lowerStationTemp = lowerStation && lowerStation.airTempAvg;
+  const upperStation =
+    weatherStationData.upperStationData &&
+    weatherStationData.upperStationData[0];
+  const upperStationTemp = upperStation && upperStation.airTempAvg;
+
   return (
     <Container selected={state.selectedOption && state.selectedOption.image}>
       <div className="left-container">
@@ -201,9 +351,10 @@ const LandingPage = () => {
           />
         </div>
       </div>
-      {images.map((imgClass) => {
+      {images.map((imgClass, index) => {
         return (
           <div
+            key={index}
             className={`bgImage2 ${imgClass.value} ${
               imgClass.value === selectedOption.value ? "active" : "notActive"
             }`}
@@ -221,6 +372,16 @@ const LandingPage = () => {
           </div>
         );
       })}
+      <Altitude elevation={stationNumbers[station && station].elevationUpper} />
+      <Altitude
+        elevation={stationNumbers[station && station].elevationLower}
+        elevationLower={stationNumbers[station && station].elevationLower}
+      />
+      <Temperature temperature={upperStationTemp} />
+      <Temperature
+        temperature={lowerStationTemp}
+        temperatureLower={lowerStationTemp}
+      />
     </Container>
   );
 };

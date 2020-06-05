@@ -25,7 +25,7 @@ const SplitText = ({ copy, role, count }) => {
     <Container>
       <span aria-label={copy} role={role}>
         {copy.split("").map(function (char, index) {
-          let style = { "animation-delay": count + index / 10 + "s" };
+          let style = { animationDelay: count + index / 10 + "s" };
           return (
             <span className="span" aria-hidden="true" key={index} style={style}>
               {char}
