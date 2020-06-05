@@ -6,12 +6,16 @@ const AltitudeStyles = styled("div")`
   grid-row: ${(props) => (props.elevationLower ? "2 / span 1" : "1 / span 1")};
   justify-self: end;
   align-self: end;
+
+  .elevation {
+    font-size: 1.5em;
+  }
 `;
 
 const Altitude = ({ elevation, elevationLower }) => {
   return (
     <AltitudeStyles elevationLower={elevationLower}>
-      <h3>{elevation}</h3>
+      <h3 className="elevation">{elevation}</h3>
     </AltitudeStyles>
   );
 };

@@ -1,8 +1,7 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
+import React from "react";
+import { Line } from "react-chartjs-2";
 
 export const Chart = ({ data }) => {
-
   return (
     <div className="chart">
       <Line
@@ -10,10 +9,10 @@ export const Chart = ({ data }) => {
         options={{
           title: {
             display: true,
-            text: "Season Snowfall"
-          }
-        }
-        } />
+            text: "Season Snowfall",
+          },
+        }}
+      />
     </div>
   );
 };
