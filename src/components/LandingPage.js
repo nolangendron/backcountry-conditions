@@ -179,15 +179,17 @@ const LandingPage = () => {
   const [lowerStationData, setlowerStationData] = useState([]);
   const [upperStationData, setupperStationData] = useState([]);
 
-  const [newSnowLowerStation, setNewSnowLowerStation] = useState({
-    labels: ["24hrs", "48hrs", "7 Days"],
-    datasets: [{}],
-  });
+  const [newSnowLowerStation, setNewSnowLowerStation] = useState([
+    { name: "24hrs", snow: null },
+    { name: "48hrs", snow: null },
+    { name: "7 Days", snow: null },
+  ]);
 
-  const [newSnowUpperStation, setNewSnowUpperStation] = useState({
-    labels: ["24hrs", "48hrs", "7 Days"],
-    datasets: [{}],
-  });
+  const [newSnowUpperStation, setNewSnowUpperStation] = useState([
+    { name: "24hrs", snow: null },
+    { name: "48hrs", snow: null },
+    { name: "7 Days", snow: null },
+  ]);
 
   useEffect(() => {
     if (state.selectedOption.value !== "none") {
@@ -247,17 +249,11 @@ const LandingPage = () => {
       getNewLastWeekSnowLowerStation &&
       getNewLastWeekSnowLowerStation.reduce((a, b) => a + b, 0);
 
-    setNewSnowLowerStation({
-      datasets: [
-        {
-          data: [
-            sumNewSnowLowerStation && sumNewSnowLowerStation,
-            sumNewTwoDaySnowLowerStation && sumNewTwoDaySnowLowerStation,
-            sumNewLastWeekSnowLowerStation && sumNewLastWeekSnowLowerStation,
-          ],
-        },
-      ],
-    });
+    setNewSnowLowerStation([
+      { name: "24hrs", snow: sumNewSnowLowerStation },
+      { name: "48hrs", snow: sumNewTwoDaySnowLowerStation },
+      { name: "7 Days", snow: sumNewLastWeekSnowLowerStation },
+    ]);
   }, [lowerStationData]);
 
   useEffect(() => {
@@ -300,19 +296,11 @@ const LandingPage = () => {
       getNewLastWeekSnowUpperStation &&
       getNewLastWeekSnowUpperStation.reduce((a, b) => a + b, 0);
 
-    setNewSnowUpperStation({
-      datasets: [
-        {
-          data: [
-            sumNewSnowUpperStation && sumNewSnowUpperStation,
-
-            sumNewTwoDaySnowUpperStation && sumNewTwoDaySnowUpperStation,
-
-            sumNewLastWeekSnowUpperStation && sumNewLastWeekSnowUpperStation,
-          ],
-        },
-      ],
-    });
+    setNewSnowUpperStation([
+      { name: "24hrs", snow: null },
+      { name: "48hrs", snow: null },
+      { name: "7 Days", snow: null },
+    ]);
   }, [upperStationData]);
 
   const handleChange = (selectedOption) => {
