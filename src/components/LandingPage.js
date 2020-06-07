@@ -11,14 +11,14 @@ import SplitText from "./SplitText";
 import Select from "react-select";
 import Altitude from "./Altitude";
 import Temperature from "./Temperature";
-import SnowFallChart from "./SnowFallChart";
+import SnowConditions from "./SnowConditions";
 // import { CurrentWeather } from './CurrentWeather'
 
 const Container = styled("div")`
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-columns: 40px 400px 200px 200px 1fr;
+  grid-template-columns: 40px 400px 200px 200px 200px 200px 200px 200px;
   grid-template-rows: 225px 225px 1fr;
   height: 100vh;
 
@@ -297,16 +297,15 @@ const LandingPage = () => {
       getNewLastWeekSnowUpperStation.reduce((a, b) => a + b, 0);
 
     setNewSnowUpperStation([
-      { name: "24hrs", snow: null },
-      { name: "48hrs", snow: null },
-      { name: "7 Days", snow: null },
+      { name: "24hrs", snow: sumNewSnowUpperStation },
+      { name: "48hrs", snow: sumNewTwoDaySnowUpperStation },
+      { name: "7 Days", snow: sumNewLastWeekSnowUpperStation },
     ]);
   }, [upperStationData]);
 
   const handleChange = (selectedOption) => {
     setState({ selectedOption });
   };
-
   const { selectedOption } = state;
 
   const station = selectedOption && selectedOption.value;
@@ -369,7 +368,33 @@ const LandingPage = () => {
         temperature={lowerStationTemp && lowerStationTemp}
         temperatureLower={true}
       />
-      <SnowFallChart data={newSnowLowerStation && newSnowLowerStation} />
+      <SnowConditions
+        snow={newSnowUpperStation[0].snow && newSnowUpperStation[0].snow}
+        gridColumn={"5 / span 1"}
+      />
+      <SnowConditions
+        snow={newSnowUpperStation[1].snow && newSnowUpperStation[1].snow}
+        gridColumn={"6 / span 1"}
+      />
+      <SnowConditions
+        snow={newSnowUpperStation[2].snow && newSnowUpperStation[2].snow}
+        gridColumn={"7 / span 1"}
+      />
+      <SnowConditions
+        snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
+        gridColumn={"5 / span 1"}
+        gridRow={"2 / span 1"}
+      />
+      <SnowConditions
+        snow={newSnowLowerStation[1].snow && newSnowLowerStation[1].snow}
+        gridColumn={"6 / span 1"}
+        gridRow={"2 / span 1"}
+      />
+      <SnowConditions
+        snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
+        gridColumn={"7 / span 1"}
+        gridRow={"2 / span 1"}
+      />
     </Container>
   );
 };

@@ -9,7 +9,7 @@ const SnowFallChartStyles = styled("div")`
 const SnowFallChart = ({ data }) => {
   return (
     <SnowFallChartStyles>
-      <BarChart data={data}>
+      <BarChart width={500} height={300} data={data}>
         <XAxis dataKey="name" />
         <Bar dataKey="snow" fill="#8884d8" />
       </BarChart>
