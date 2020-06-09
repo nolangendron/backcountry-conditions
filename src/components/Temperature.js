@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { FaTemperatureLow } from "react-icons/fa";
 
 const TemperatureStyles = styled("div")`
   grid-column: 4 / span 1;
