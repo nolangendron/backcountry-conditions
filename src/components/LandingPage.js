@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import styled from "@emotion/styled";
 import { getWeatherStationData } from "../utils/apiCalls";
 import { calNewSnowLastDay } from "../utils/calNewSnowLastDay";
@@ -358,43 +358,49 @@ const LandingPage = () => {
           </div>
         );
       })}
-      <Altitude elevation={stationNumbers[station && station].elevationUpper} />
-      <Altitude
-        elevation={stationNumbers[station && station].elevationLower}
-        elevationLower={true}
-      />
-      <Temperature temperature={upperStationTemp && upperStationTemp} />
-      <Temperature
-        temperature={lowerStationTemp && lowerStationTemp}
-        temperatureLower={true}
-      />
-      <SnowConditions
-        snow={newSnowUpperStation[0].snow && newSnowUpperStation[0].snow}
-        gridColumn={"5 / span 1"}
-      />
-      <SnowConditions
-        snow={newSnowUpperStation[1].snow && newSnowUpperStation[1].snow}
-        gridColumn={"6 / span 1"}
-      />
-      <SnowConditions
-        snow={newSnowUpperStation[2].snow && newSnowUpperStation[2].snow}
-        gridColumn={"7 / span 1"}
-      />
-      <SnowConditions
-        snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
-        gridColumn={"5 / span 1"}
-        gridRow={"2 / span 1"}
-      />
-      <SnowConditions
-        snow={newSnowLowerStation[1].snow && newSnowLowerStation[1].snow}
-        gridColumn={"6 / span 1"}
-        gridRow={"2 / span 1"}
-      />
-      <SnowConditions
-        snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
-        gridColumn={"7 / span 1"}
-        gridRow={"2 / span 1"}
-      />
+      {selectedOption.value !== "none" && (
+        <Fragment>
+          <Altitude
+            elevation={stationNumbers[station && station].elevationUpper}
+          />
+          <Altitude
+            elevation={stationNumbers[station && station].elevationLower}
+            elevationLower={true}
+          />
+          <Temperature temperature={upperStationTemp && upperStationTemp} />
+          <Temperature
+            temperature={lowerStationTemp && lowerStationTemp}
+            temperatureLower={true}
+          />
+          <SnowConditions
+            snow={newSnowUpperStation[0].snow && newSnowUpperStation[0].snow}
+            gridColumn={"5 / span 1"}
+          />
+          <SnowConditions
+            snow={newSnowUpperStation[1].snow && newSnowUpperStation[1].snow}
+            gridColumn={"6 / span 1"}
+          />
+          <SnowConditions
+            snow={newSnowUpperStation[2].snow && newSnowUpperStation[2].snow}
+            gridColumn={"7 / span 1"}
+          />
+          <SnowConditions
+            snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
+            gridColumn={"5 / span 1"}
+            gridRow={"2 / span 1"}
+          />
+          <SnowConditions
+            snow={newSnowLowerStation[1].snow && newSnowLowerStation[1].snow}
+            gridColumn={"6 / span 1"}
+            gridRow={"2 / span 1"}
+          />
+          <SnowConditions
+            snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
+            gridColumn={"7 / span 1"}
+            gridRow={"2 / span 1"}
+          />
+        </Fragment>
+      )}
     </Container>
   );
 };

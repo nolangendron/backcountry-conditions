@@ -7,15 +7,22 @@ const SnowConditionsStyles = styled("div")`
   justify-self: end;
   align-self: end;
 
-  .elevation {
-    font-size: 1.5em;
+  .snow {
+    font-size: 2.5em;
+  }
+
+  .cm {
+    font-size: 0.5em;
   }
 `;
 
 const SnowConditions = ({ snow, gridColumn }) => {
   return (
     <SnowConditionsStyles gridColumn={gridColumn}>
-      <h3 className="elevation">{snow}cm</h3>
+      <h3 className="snow">
+        {snow}
+        <span className="cm">cm</span>
+      </h3>
     </SnowConditionsStyles>
   );
 };
