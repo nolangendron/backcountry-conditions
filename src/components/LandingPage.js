@@ -13,6 +13,7 @@ import Altitude from "./Altitude";
 import Temperature from "./Temperature";
 import SnowConditions from "./SnowConditions";
 import { FaTemperatureLow, FaMountain, FaRegSnowflake } from "react-icons/fa";
+import { Chart } from "./Chart.js";
 
 // import { CurrentWeather } from './CurrentWeather'
 
@@ -214,6 +215,16 @@ const LandingPage = () => {
     { name: "7 Days", snow: null },
   ]);
 
+  const [historicSnowData, setHistoricSnowData] = useState({
+    data: {
+      labels: [],
+      datasets: [
+        { label: "", fill: false, backgroundColor: "", data: [] },
+        { label: "", fill: false, backgroundColor: "", data: [] },
+      ],
+    },
+  });
+
   useEffect(() => {
     if (state.selectedOption.value !== "none") {
       getWeatherStationData(state.selectedOption.lowerStation).then(
@@ -325,6 +336,57 @@ const LandingPage = () => {
       { name: "7 Days", snow: sumNewLastWeekSnowUpperStation },
     ]);
   }, [upperStationData]);
+
+  const lowerSeasonData =
+    state.selectedOption &&
+    stationNumbers[state.selectedOption.value].seasonDataLower;
+  const upperSeasonData =
+    state.selectedOption &&
+    stationNumbers[state.selectedOption.value].seasonDataUpper;
+  const lowerLabel =
+    state.selectedOption &&
+    stationNumbers[state.selectedOption.value].elevationLower;
+  const upperLabel =
+    state.selectedOption &&
+    stationNumbers[state.selectedOption.value].elevationUpper;
+
+  useEffect(() => {
+    const getSnowPackData = (arr) => {
+      if (arr !== null) {
+        const dataArray = [];
+        const dateArray = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (
+            arr[i].date.charAt(11) === "2" &&
+            arr[i].date.charAt(12) === "3"
+          ) {
+            dateArray.push(arr[i].date.slice(0, 10));
+            dataArray.push(arr[i].snowpack);
+          }
+        }
+        return { dataArray, dateArray };
+      }
+    };
+    const upperSnowData = getSnowPackData(upperSeasonData && upperSeasonData);
+    const lowerSnowData = getSnowPackData(lowerSeasonData && lowerSeasonData);
+    setHistoricSnowData({
+      data: {
+        labels: lowerSnowData && lowerSnowData.dateArray,
+        datasets: [
+          {
+            label: lowerLabel,
+            backgroundColor: "#50D8D7",
+            data: lowerSnowData && lowerSnowData.dataArray,
+          },
+          {
+            label: upperLabel,
+            backgroundColor: "#547AA5",
+            data: upperSnowData && upperSnowData.dataArray,
+          },
+        ],
+      },
+    });
+  }, [lowerLabel, lowerSeasonData, upperLabel, upperSeasonData]);
 
   const handleChange = (selectedOption) => {
     setState({ selectedOption });
@@ -443,6 +505,7 @@ const LandingPage = () => {
             gridColumn={"8 / span 1"}
             gridRow={"3 / span 1"}
           />
+          <Chart data={historicSnowData.data} />
         </Fragment>
       )}
     </Container>

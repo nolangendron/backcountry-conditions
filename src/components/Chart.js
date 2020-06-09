@@ -1,9 +1,16 @@
 import React from "react";
+import styled from "@emotion/styled";
 import { Line } from "react-chartjs-2";
 
+const ChartStyles = styled("div")`
+  grid-column: 3 / span 6;
+  grid-row: 4 / span 1;
+  overflow: scroll;
+`;
 export const Chart = ({ data }) => {
+  console.log(data);
   return (
-    <div className="chart">
+    <ChartStyles>
       <Line
         data={data}
         options={{
@@ -13,6 +20,6 @@ export const Chart = ({ data }) => {
           },
         }}
       />
-    </div>
+    </ChartStyles>
   );
 };
