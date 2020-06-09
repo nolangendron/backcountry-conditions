@@ -3,12 +3,13 @@ import styled from "@emotion/styled";
 
 const SnowConditionsStyles = styled("div")`
   grid-column: ${(props) => props.gridColumn && props.gridColumn};
-  grid-row: 1 span 1;
-  justify-self: end;
-  align-self: end;
+  grid-row: ${(props) => props.gridRow && props.gridRow};
+  justify-self: center;
+  align-self: center;
 
   .snow {
     font-size: 2.5em;
+    margin: 0;
   }
 
   .cm {
@@ -16,9 +17,9 @@ const SnowConditionsStyles = styled("div")`
   }
 `;
 
-const SnowConditions = ({ snow, gridColumn }) => {
+const SnowConditions = ({ snow, gridColumn, gridRow }) => {
   return (
-    <SnowConditionsStyles gridColumn={gridColumn}>
+    <SnowConditionsStyles gridColumn={gridColumn} gridRow={gridRow}>
       <h3 className="snow">
         {snow}
         <span className="cm">cm</span>

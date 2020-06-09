@@ -12,19 +12,21 @@ import Select from "react-select";
 import Altitude from "./Altitude";
 import Temperature from "./Temperature";
 import SnowConditions from "./SnowConditions";
+import { FaTemperatureLow, FaMountain, FaRegSnowflake } from "react-icons/fa";
+
 // import { CurrentWeather } from './CurrentWeather'
 
 const Container = styled("div")`
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-columns: 40px 400px 200px 200px 200px 200px 200px 200px;
-  grid-template-rows: 225px 225px 1fr;
+  grid-template-columns: 40px 450px 180px 180px 180px 180px 180px 180px;
+  grid-template-rows: 166.66px 166.66px 166.66px 1fr;
   height: 100vh;
 
   .left-container {
     grid-column: 2 / span 1;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
   }
   .title {
     margin-top: 80px;
@@ -123,6 +125,27 @@ const Container = styled("div")`
   .select {
     margin-top: 100px;
     width: 400px;
+  }
+
+  .altitude-icon {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: center;
+    align-self: end;
+  }
+
+  .temp-icon {
+    grid-column: 4 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: center;
+    align-self: end;
+  }
+
+  .snow-icon {
+    grid-column: 5 / span 4;
+    grid-row: 1 / span 1;
+    justify-self: center;
+    align-self: end;
   }
 
   .path {
@@ -363,6 +386,8 @@ const LandingPage = () => {
 
       {selectedOption.value !== "none" && (
         <Fragment>
+          <FaMountain className="altitude-icon" size="2.5em" />
+
           <Altitude
             elevation={stationNumbers[station && station].elevationUpper}
           />
@@ -370,46 +395,53 @@ const LandingPage = () => {
             elevation={stationNumbers[station && station].elevationLower}
             elevationLower={true}
           />
+          <FaTemperatureLow className="temp-icon" size="2.5em" />
+
           <Temperature temperature={upperStationTemp && upperStationTemp} />
           <Temperature
             temperature={lowerStationTemp && lowerStationTemp}
             temperatureLower={true}
           />
+          <FaRegSnowflake className="snow-icon" size="2.5em" />
           <SnowConditions
             snow={newSnowUpperStation[0].snow && newSnowUpperStation[0].snow}
             gridColumn={"5 / span 1"}
+            gridRow={"2 / span 1"}
           />
           <SnowConditions
             snow={newSnowUpperStation[1].snow && newSnowUpperStation[1].snow}
             gridColumn={"6 / span 1"}
+            gridRow={"2 / span 1"}
           />
           <SnowConditions
             snow={newSnowUpperStation[2].snow && newSnowUpperStation[2].snow}
             gridColumn={"7 / span 1"}
+            gridRow={"2 / span 1"}
           />
           <SnowConditions
             snow={lowerStationSnowDepth && lowerStationSnowDepth}
             gridColumn={"8 / span 1"}
+            gridRow={"2 / span 1"}
           />
           <SnowConditions
             snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
             gridColumn={"5 / span 1"}
-            gridRow={"2 / span 1"}
+            gridRow={"3 / span 1"}
           />
           <SnowConditions
             snow={newSnowLowerStation[1].snow && newSnowLowerStation[1].snow}
             gridColumn={"6 / span 1"}
-            gridRow={"2 / span 1"}
+            gridRow={"3 / span 1"}
           />
           <SnowConditions
             snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
             gridColumn={"7 / span 1"}
-            gridRow={"2 / span 1"}
+            gridRow={"3 / span 1"}
           />
           <SnowConditions
             snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
             gridColumn={"8 / span 1"}
-            gridRow={"2 / span 1"}
+            gridRow={"3 / span 1"}
           />
         </Fragment>
       )}
