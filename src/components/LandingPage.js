@@ -176,8 +176,8 @@ const LandingPage = () => {
   const [state, setState] = useState({
     selectedOption: options[0],
   });
-  const [lowerStationData, setlowerStationData] = useState([]);
-  const [upperStationData, setupperStationData] = useState([]);
+  const [lowerStationData, setLowerStationData] = useState([]);
+  const [upperStationData, setUpperStationData] = useState([]);
 
   const [newSnowLowerStation, setNewSnowLowerStation] = useState([
     { name: "24hrs", snow: null },
@@ -196,14 +196,14 @@ const LandingPage = () => {
       getWeatherStationData(state.selectedOption.lowerStation).then(
         (result) => {
           let lowerData = result;
-          setlowerStationData(lowerData);
+          setLowerStationData(lowerData);
         }
       );
 
       getWeatherStationData(state.selectedOption.upperStation).then(
         (result) => {
           let upperData = result;
-          setupperStationData(upperData);
+          setUpperStationData(upperData);
         }
       );
     }
@@ -310,7 +310,9 @@ const LandingPage = () => {
 
   const station = selectedOption && selectedOption.value;
   const lowerStation = lowerStationData && lowerStationData[0];
+  console.log(lowerStation);
   const lowerStationTemp = lowerStation && lowerStation.airTempAvg;
+  const lowerStationSnowDepth = lowerStation && lowerStation.snowHeight;
 
   const upperStation = upperStationData && upperStationData[0];
   const upperStationTemp = upperStation && upperStation.airTempAvg;
@@ -358,6 +360,7 @@ const LandingPage = () => {
           </div>
         );
       })}
+
       {selectedOption.value !== "none" && (
         <Fragment>
           <Altitude
@@ -385,6 +388,10 @@ const LandingPage = () => {
             gridColumn={"7 / span 1"}
           />
           <SnowConditions
+            snow={lowerStationSnowDepth && lowerStationSnowDepth}
+            gridColumn={"8 / span 1"}
+          />
+          <SnowConditions
             snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
             gridColumn={"5 / span 1"}
             gridRow={"2 / span 1"}
@@ -397,6 +404,11 @@ const LandingPage = () => {
           <SnowConditions
             snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
             gridColumn={"7 / span 1"}
+            gridRow={"2 / span 1"}
+          />
+          <SnowConditions
+            snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
+            gridColumn={"8 / span 1"}
             gridRow={"2 / span 1"}
           />
         </Fragment>
