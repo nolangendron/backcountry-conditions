@@ -21,7 +21,7 @@ const Container = styled("div")`
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-columns: 40px 450px 180px 180px 180px 180px 180px 180px;
+  grid-template-columns: 40px 400px 170px 170px 170px 170px 170px 170px;
   grid-template-rows: 166.66px 166.66px 166.66px 1fr;
   height: 100vh;
 
