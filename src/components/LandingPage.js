@@ -22,7 +22,7 @@ const Container = styled("div")`
   margin: 0;
   padding: 0;
   grid-template-columns: 3% 27% 12% 12% 12% 12% 12% 12%;
-  grid-template-rows: 166.66px 166.66px 166.66px 1fr;
+  grid-template-rows: 0.33fr 0.33fr 0.33fr 1fr;
   height: 100vh;
 
   .left-container {
