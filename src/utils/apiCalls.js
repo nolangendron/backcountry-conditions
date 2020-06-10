@@ -1,5 +1,5 @@
 export const getWeatherStationData = async (station) => {
-  const url = `https://wx.avalanche.ca/stations/${station}/measurements/`;
+  const url = `https://api.avalanche.ca/weather/stations/${station}/measurements/`;
   try {
     const response = await fetch(url);
     const data = await response.json();
