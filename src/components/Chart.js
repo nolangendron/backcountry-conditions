@@ -9,7 +9,6 @@ const ChartStyles = styled("div")`
   padding: 40px;
 `;
 export const Chart = ({ data }) => {
-  console.log(data);
   return (
     <ChartStyles>
       <Line

@@ -12,18 +12,25 @@ const SnowConditionsStyles = styled("div")`
     margin: 0;
   }
 
+  .type {
+    font-size: 1.2em;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+
   .cm {
     font-size: 0.5em;
   }
 `;
 
-const SnowConditions = ({ snow, gridColumn, gridRow, alignSelf }) => {
+const SnowConditions = ({ snow, gridColumn, gridRow, alignSelf, type }) => {
   return (
     <SnowConditionsStyles
       gridColumn={gridColumn}
       gridRow={gridRow}
       alignSelf={alignSelf}
     >
+      {gridRow === "2 / span 1" && <h3 className="type">{type}</h3>}
       <h3 className="snow">
         {snow}
         <span className="cm">cm</span>

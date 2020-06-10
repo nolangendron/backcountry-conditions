@@ -21,7 +21,7 @@ const Container = styled("div")`
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-columns: 40px 400px 170px 170px 170px 170px 170px 170px;
+  grid-template-columns: 3% 27% 12% 12% 12% 12% 12% 12%;
   grid-template-rows: 166.66px 166.66px 166.66px 1fr;
   height: 100vh;
 
@@ -476,24 +476,28 @@ const LandingPage = () => {
             gridColumn={"5 / span 1"}
             gridRow={"2 / span 1"}
             alignSelf={"end"}
+            type={"24hrs"}
           />
           <SnowConditions
             snow={newSnowUpperStation[1].snow && newSnowUpperStation[1].snow}
             gridColumn={"6 / span 1"}
             gridRow={"2 / span 1"}
             alignSelf={"end"}
+            type={"48hrs"}
           />
           <SnowConditions
             snow={newSnowUpperStation[2].snow && newSnowUpperStation[2].snow}
             gridColumn={"7 / span 1"}
             gridRow={"2 / span 1"}
             alignSelf={"end"}
+            type={"7 day"}
           />
           <SnowConditions
             snow={lowerStationSnowDepth && lowerStationSnowDepth}
             gridColumn={"8 / span 1"}
             gridRow={"2 / span 1"}
             alignSelf={"end"}
+            type={"Base"}
           />
           <SnowConditions
             snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
