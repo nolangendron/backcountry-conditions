@@ -6,6 +6,7 @@ const ChartStyles = styled("div")`
   grid-column: 3 / span 6;
   grid-row: 4 / span 1;
   overflow: scroll;
+  padding: 40px;
 `;
 export const Chart = ({ data }) => {
   console.log(data);

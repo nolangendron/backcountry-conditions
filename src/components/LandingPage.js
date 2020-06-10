@@ -452,58 +452,72 @@ const LandingPage = () => {
 
           <Altitude
             elevation={stationNumbers[station && station].elevationUpper}
+            alignSelf={"end"}
           />
           <Altitude
             elevation={stationNumbers[station && station].elevationLower}
             elevationLower={true}
+            alignSelf={"center"}
           />
           <FaTemperatureLow className="temp-icon" size="2.5em" />
 
-          <Temperature temperature={upperStationTemp && upperStationTemp} />
+          <Temperature
+            temperature={upperStationTemp && upperStationTemp}
+            alignSelf={"end"}
+          />
           <Temperature
             temperature={lowerStationTemp && lowerStationTemp}
             temperatureLower={true}
+            alignSelf={"center"}
           />
           <FaRegSnowflake className="snow-icon" size="2.5em" />
           <SnowConditions
             snow={newSnowUpperStation[0].snow && newSnowUpperStation[0].snow}
             gridColumn={"5 / span 1"}
             gridRow={"2 / span 1"}
+            alignSelf={"end"}
           />
           <SnowConditions
             snow={newSnowUpperStation[1].snow && newSnowUpperStation[1].snow}
             gridColumn={"6 / span 1"}
             gridRow={"2 / span 1"}
+            alignSelf={"end"}
           />
           <SnowConditions
             snow={newSnowUpperStation[2].snow && newSnowUpperStation[2].snow}
             gridColumn={"7 / span 1"}
             gridRow={"2 / span 1"}
+            alignSelf={"end"}
           />
           <SnowConditions
             snow={lowerStationSnowDepth && lowerStationSnowDepth}
             gridColumn={"8 / span 1"}
             gridRow={"2 / span 1"}
+            alignSelf={"end"}
           />
           <SnowConditions
             snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
             gridColumn={"5 / span 1"}
             gridRow={"3 / span 1"}
+            alignSelf={"center"}
           />
           <SnowConditions
             snow={newSnowLowerStation[1].snow && newSnowLowerStation[1].snow}
             gridColumn={"6 / span 1"}
             gridRow={"3 / span 1"}
+            alignSelf={"center"}
           />
           <SnowConditions
             snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
             gridColumn={"7 / span 1"}
             gridRow={"3 / span 1"}
+            alignSelf={"center"}
           />
           <SnowConditions
             snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
             gridColumn={"8 / span 1"}
             gridRow={"3 / span 1"}
+            alignSelf={"center"}
           />
           <Chart data={historicSnowData.data} />
         </Fragment>

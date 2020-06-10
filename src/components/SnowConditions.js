@@ -5,7 +5,7 @@ const SnowConditionsStyles = styled("div")`
   grid-column: ${(props) => props.gridColumn && props.gridColumn};
   grid-row: ${(props) => props.gridRow && props.gridRow};
   justify-self: center;
-  align-self: center;
+  align-self: ${(props) => props.alignSelf && props.alignSelf};
 
   .snow {
     font-size: 2.5em;
@@ -17,9 +17,13 @@ const SnowConditionsStyles = styled("div")`
   }
 `;
 
-const SnowConditions = ({ snow, gridColumn, gridRow }) => {
+const SnowConditions = ({ snow, gridColumn, gridRow, alignSelf }) => {
   return (
-    <SnowConditionsStyles gridColumn={gridColumn} gridRow={gridRow}>
+    <SnowConditionsStyles
+      gridColumn={gridColumn}
+      gridRow={gridRow}
+      alignSelf={alignSelf}
+    >
       <h3 className="snow">
         {snow}
         <span className="cm">cm</span>

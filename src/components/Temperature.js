@@ -6,7 +6,7 @@ const TemperatureStyles = styled("div")`
   grid-row: ${(props) =>
     props.temperatureLower ? "3 / span 1" : "2 / span 1"};
   justify-self: center;
-  align-self: center;
+  align-self: ${(props) => props.alignSelf && props.alignSelf};
 
   .temperature-value {
     margin: 0;
@@ -18,9 +18,12 @@ const TemperatureStyles = styled("div")`
   }
 `;
 
-const Temperature = ({ temperature, temperatureLower }) => {
+const Temperature = ({ temperature, temperatureLower, alignSelf }) => {
   return (
-    <TemperatureStyles temperatureLower={temperatureLower}>
+    <TemperatureStyles
+      temperatureLower={temperatureLower}
+      alignSelf={alignSelf}
+    >
       <h3 className="temperature-value">
         {temperature}
         <sup className="celsius">{String.fromCharCode(176)}C</sup>
