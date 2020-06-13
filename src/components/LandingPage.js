@@ -22,15 +22,15 @@ const Container = styled("div")`
   margin: 0;
   padding: 0;
   grid-template-columns: 3% 27% 12% 12% 12% 12% 12% 12%;
-  grid-template-rows: 0.33fr 0.33fr 0.33fr 1fr;
+  grid-template-rows: 16.66% 16.66% 16.66% 50%;
   height: 100vh;
 
   .left-container {
     grid-column: 2 / span 1;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 4;
   }
   .title {
-    margin-top: 80px;
+    margin-top: 20%;
     font-size: 2em;
   }
 
@@ -125,7 +125,7 @@ const Container = styled("div")`
 
   .select {
     margin-top: 100px;
-    width: 400px;
+    width: 80%;
   }
 
   .altitude-icon {
