@@ -50,10 +50,10 @@ const Container = styled("div")`
     top: 0;
     left: 0;
     z-index: -1;
-    -webkit-transition: opacity 0.75s ease-in-out;
-    -moz-transition: opacity 0.75s ease-in-out;
-    -o-transition: opacity 0.75s ease-in-out;
-    transition: opacity 0.75s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
   }
 
   .bgImage2.active {
