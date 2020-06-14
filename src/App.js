@@ -4,9 +4,9 @@ import LandingPage from "./components/LandingPage";
 
 function App() {
   return (
-    <Fragment>
+    <div className="main-container">
       <LandingPage />
-    </Fragment>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ const TemperatureStyles = styled("div")`
   grid-row: ${(props) =>
     props.temperatureLower ? "4 / span 1" : "3 / span 1"};
   justify-self: center;
-  align-self: ${(props) => props.alignSelf && props.alignSelf};
+  align-self: center;
 
   .temperature-value {
     margin: 0;

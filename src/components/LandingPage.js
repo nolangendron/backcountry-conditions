@@ -15,19 +15,20 @@ import SnowConditions from "./SnowConditions";
 import { FaTemperatureLow, FaMountain, FaRegSnowflake } from "react-icons/fa";
 import { Chart } from "./Chart.js";
 
-// import { CurrentWeather } from './CurrentWeather'
-
 const Container = styled("div")`
   display: grid;
   margin: 0;
   padding: 0;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 40% 8% 8% 8% 1fr;
+  grid-template-rows: 50vh 8% 8% 8% 1fr;
+  height: 100vh;
+  overflow: scroll;
 
   .left-container {
     grid-column: 5 / span 4;
     grid-row: 1 / span 1;
   }
+
   .title {
     margin-top: 20%;
     font-size: 2em;
@@ -42,8 +43,6 @@ const Container = styled("div")`
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 55%;
     z-index: -1;
     -webkit-transition: opacity 0.75s ease-in-out;
     -moz-transition: opacity 0.75s ease-in-out;
@@ -68,6 +67,7 @@ const Container = styled("div")`
       ),
       url(${imgLandingPage}) no-repeat;
     background-size: cover;
+    width: 100%;
     height: 100%;
   }
 
@@ -86,6 +86,8 @@ const Container = styled("div")`
       ),
       url(${coquihalla}) no-repeat;
     background-size: cover;
+    width: 100%;
+    height: 50vh;
   }
 
   .bgImage2.active.duffey {
@@ -103,6 +105,8 @@ const Container = styled("div")`
       ),
       url(${duffey}) no-repeat;
     background-size: cover;
+    width: 100%;
+    height: 50vh;
   }
 
   .bgImage2.active.manningPark {
@@ -120,11 +124,13 @@ const Container = styled("div")`
       ),
       url(${manning}) no-repeat;
     background-size: cover;
+    width: 100%;
+    height: 50vh;
   }
 
   .select {
     margin-top: 20px;
-    width: 80%;
+    width: 40%;
   }
 
   .altitude-icon {
@@ -394,7 +400,6 @@ const LandingPage = () => {
 
   const station = selectedOption && selectedOption.value;
   const lowerStation = lowerStationData && lowerStationData[0];
-  console.log(lowerStation);
   const lowerStationTemp = lowerStation && lowerStation.airTempAvg;
   const lowerStationSnowDepth = lowerStation && lowerStation.snowHeight;
 
@@ -430,18 +435,7 @@ const LandingPage = () => {
             className={`bgImage2 ${imgClass.value} ${
               imgClass.value === selectedOption.value ? "active" : "notActive"
             }`}
-          >
-            {/* <svg viewBox="0 0 700 1500" fill="none" stroke-linecap="square" stroke-miterlimit="10" xmlns="http://www.w3.org/2000/svg">
-              <clipPath id="a">
-                <path d="M0 0h960v720H0V0z" />
-              </clipPath>
-              <g clip-path="url(#a)">
-                <path fill="none" d="M0 0h960v720H0z" />
-                <path fill="none" d="M1.286 720L321.01 219.346l38.418 74.355L468.48 86.748l60.722 102.856L635.777 13.633l85.51 101.616L789.443 0" />
-                <path className="path" stroke="#000" stroke-width="3" stroke-linejoin="round" stroke-linecap="butt" d="M1.286 720L321.01 219.346l38.418 74.355L468.48 86.748l60.722 102.856L635.777 13.633l85.51 101.616L789.443 0" pathLength="1" />
-              </g>
-            </svg> */}
-          </div>
+          ></div>
         );
       })}
 
@@ -458,14 +452,10 @@ const LandingPage = () => {
           />
           <FaTemperatureLow className="temp-icon" size="2.5em" />
 
-          <Temperature
-            temperature={upperStationTemp && upperStationTemp}
-            alignSelf={"end"}
-          />
+          <Temperature temperature={upperStationTemp && upperStationTemp} />
           <Temperature
             temperature={lowerStationTemp && lowerStationTemp}
             temperatureLower={true}
-            alignSelf={"center"}
           />
           <FaRegSnowflake className="snow-icon" size="2.5em" />
           <SnowConditions

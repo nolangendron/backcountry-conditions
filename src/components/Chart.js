@@ -5,7 +5,6 @@ import { Line } from "react-chartjs-2";
 const ChartStyles = styled("div")`
   grid-column: 3 / span 8;
   grid-row: 5 / span 1;
-  overflow: scroll;
   padding: 40px;
 `;
 export const Chart = ({ data }) => {
