@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { getWeatherStationData } from "../utils/apiCalls";
 import { calNewSnowLastDay } from "../utils/calNewSnowLastDay";
 import { stationNumbers } from "../data/weatherStationDetails";
-import imgLandingPage from "../images/powder2.png";
+import imgLandingPage from "../images/powder2.jpg";
 import coquihalla from "../images/Thar_Peak.jpg";
 import duffey from "../images/duffey.jpg";
 import manning from "../images/manning.jpg";
@@ -21,12 +21,12 @@ const Container = styled("div")`
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-columns: 3% 27% 12% 12% 12% 12% 12% 12%;
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 16.66% 16.66% 16.66% 50%;
   height: 100vh;
 
   .left-container {
-    grid-column: 2 / span 1;
+    grid-column: 5 / span 4;
     grid-row: 1 / span 4;
   }
   .title {
@@ -124,8 +124,8 @@ const Container = styled("div")`
   }
 
   .select {
-    margin-top: 100px;
-    width: 80%;
+    margin-top: 50px;
+    width: 100%;
   }
 
   .altitude-icon {
