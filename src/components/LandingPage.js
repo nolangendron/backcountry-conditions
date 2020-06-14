@@ -238,6 +238,11 @@ const LandingPage = () => {
     windDirection: [],
   });
 
+  const [windLowerStation, setWindLowerStation] = useState({
+    windSpeed: [],
+    windDirection: [],
+  });
+
   const [historicSnowData, setHistoricSnowData] = useState({
     data: {
       labels: [],
@@ -253,6 +258,7 @@ const LandingPage = () => {
       getWeatherStationData(state.selectedOption.lowerStation).then(
         (result) => {
           let lowerData = result;
+          console.log(lowerData);
           setLowerStationData(lowerData);
         }
       );
@@ -260,8 +266,6 @@ const LandingPage = () => {
       getWeatherStationData(state.selectedOption.upperStation).then(
         (result) => {
           let upperData = result;
-          console.log(upperData);
-
           setUpperStationData(upperData);
         }
       );
@@ -313,6 +317,23 @@ const LandingPage = () => {
       { name: "48hrs", snow: sumNewTwoDaySnowLowerStation },
       { name: "7 Days", snow: sumNewLastWeekSnowLowerStation },
     ]);
+
+    const windSpeedLowerStation =
+      lastTwoDaySnowLowerStation &&
+      lastTwoDaySnowLowerStation.map((day) => {
+        return day.windSpeedAvg;
+      });
+
+    const windDirectionLowerStation =
+      lastTwoDaySnowLowerStation &&
+      lastTwoDaySnowLowerStation.map((day) => {
+        return day.windDirAvg;
+      });
+
+    setWindLowerStation({
+      windSpeed: windSpeedLowerStation,
+      windDirection: windDirectionLowerStation,
+    });
   }, [lowerStationData]);
 
   useEffect(() => {
@@ -371,7 +392,6 @@ const LandingPage = () => {
       windSpeed: windSpeedUpperStation,
       windDirection: windDirectionUpperStation,
     });
-
     setNewSnowUpperStation([
       { name: "24hrs", snow: sumNewSnowUpperStation },
       { name: "48hrs", snow: sumNewTwoDaySnowUpperStation },
@@ -548,7 +568,12 @@ const LandingPage = () => {
             windSpeed={windUpperStation && windUpperStation.windSpeed}
             windDirection={windUpperStation && windUpperStation.windDirection}
           />
-          <WindChart gridColumn={"10 / span 2"} gridRow={"4 / span 1"} />
+          <WindChart
+            gridColumn={"10 / span 2"}
+            gridRow={"4 / span 1"}
+            windSpeed={windLowerStation && windLowerStation.windSpeed}
+            windDirection={windLowerStation && windLowerStation.windDirection}
+          />
           <Chart data={historicSnowData.data} />
         </Fragment>
       )}
