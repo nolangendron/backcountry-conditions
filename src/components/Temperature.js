@@ -2,9 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const TemperatureStyles = styled("div")`
-  grid-column: 4 / span 1;
+  grid-column: 5 / span 1;
   grid-row: ${(props) =>
-    props.temperatureLower ? "3 / span 1" : "2 / span 1"};
+    props.temperatureLower ? "4 / span 1" : "3 / span 1"};
   justify-self: center;
   align-self: ${(props) => props.alignSelf && props.alignSelf};
 

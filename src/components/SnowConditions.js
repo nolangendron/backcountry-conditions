@@ -5,7 +5,7 @@ const SnowConditionsStyles = styled("div")`
   grid-column: ${(props) => props.gridColumn && props.gridColumn};
   grid-row: ${(props) => props.gridRow && props.gridRow};
   justify-self: center;
-  align-self: ${(props) => props.alignSelf && props.alignSelf};
+  align-self: center;
 
   .snow {
     font-size: 2.5em;
@@ -23,13 +23,9 @@ const SnowConditionsStyles = styled("div")`
   }
 `;
 
-const SnowConditions = ({ snow, gridColumn, gridRow, alignSelf, type }) => {
+const SnowConditions = ({ snow, gridColumn, gridRow, type }) => {
   return (
-    <SnowConditionsStyles
-      gridColumn={gridColumn}
-      gridRow={gridRow}
-      alignSelf={alignSelf}
-    >
+    <SnowConditionsStyles gridColumn={gridColumn} gridRow={gridRow}>
       {gridRow === "2 / span 1" && <h3 className="type">{type}</h3>}
       <h3 className="snow">
         {snow}
