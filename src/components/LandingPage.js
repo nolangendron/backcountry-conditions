@@ -40,11 +40,10 @@ const Container = styled("div")`
   .bgImage2 {
     content: "";
     position: absolute;
-    grid-column: 5 / span 8;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 55%;
     z-index: -1;
     -webkit-transition: opacity 0.75s ease-in-out;
     -moz-transition: opacity 0.75s ease-in-out;
@@ -69,6 +68,7 @@ const Container = styled("div")`
       ),
       url(${imgLandingPage}) no-repeat;
     background-size: cover;
+    height: 100%;
   }
 
   .bgImage2.active.coquihalla {
@@ -124,7 +124,7 @@ const Container = styled("div")`
 
   .select {
     margin-top: 20px;
-    width: 100%;
+    width: 80%;
   }
 
   .altitude-icon {
