@@ -10,7 +10,7 @@ const TemperatureStyles = styled("div")`
 
   .temperature-value {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2em;
   }
 
   .celsius {
@@ -18,12 +18,9 @@ const TemperatureStyles = styled("div")`
   }
 `;
 
-const Temperature = ({ temperature, temperatureLower, alignSelf }) => {
+const Temperature = ({ temperature, temperatureLower }) => {
   return (
-    <TemperatureStyles
-      temperatureLower={temperatureLower}
-      alignSelf={alignSelf}
-    >
+    <TemperatureStyles temperatureLower={temperatureLower}>
       <h3 className="temperature-value">
         {temperature}
         <sup className="celsius">{String.fromCharCode(176)}C</sup>

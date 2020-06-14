@@ -8,12 +8,12 @@ const SnowConditionsStyles = styled("div")`
   align-self: center;
 
   .snow {
-    font-size: 2.5em;
+    font-size: 2em;
     margin: 0;
   }
 
   .type {
-    font-size: 1.2em;
+    font-size: 1em;
     margin: 0;
     padding-bottom: 10px;
   }
@@ -26,7 +26,7 @@ const SnowConditionsStyles = styled("div")`
 const SnowConditions = ({ snow, gridColumn, gridRow, type }) => {
   return (
     <SnowConditionsStyles gridColumn={gridColumn} gridRow={gridRow}>
-      {gridRow === "2 / span 1" && <h3 className="type">{type}</h3>}
+      {gridRow === "3 / span 1" && <h3 className="type">{type}</h3>}
       <h3 className="snow">
         {snow}
         <span className="cm">cm</span>

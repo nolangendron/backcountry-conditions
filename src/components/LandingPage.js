@@ -12,15 +12,21 @@ import Select from "react-select";
 import Altitude from "./Altitude";
 import Temperature from "./Temperature";
 import SnowConditions from "./SnowConditions";
-import { FaTemperatureLow, FaMountain, FaRegSnowflake } from "react-icons/fa";
+import {
+  FaTemperatureLow,
+  FaMountain,
+  FaRegSnowflake,
+  FaWind,
+} from "react-icons/fa";
 import { Chart } from "./Chart.js";
+import WindChart from "./WindChart.js";
 
 const Container = styled("div")`
   display: grid;
   margin: 0;
   padding: 0;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 50vh 8% 8% 8% 1fr;
+  grid-template-rows: 50vh 8% 15% 15% 1fr;
   height: 100vh;
   overflow: scroll;
 
@@ -130,7 +136,7 @@ const Container = styled("div")`
 
   .select {
     margin-top: 20px;
-    width: 40%;
+    width: 300px;
   }
 
   .altitude-icon {
@@ -149,6 +155,13 @@ const Container = styled("div")`
 
   .snow-icon {
     grid-column: 6 / span 4;
+    grid-row: 2 / span 1;
+    justify-self: center;
+    align-self: end;
+  }
+
+  .wind-icon {
+    grid-column: 10 / span 2;
     grid-row: 2 / span 1;
     justify-self: center;
     align-self: end;
@@ -220,6 +233,11 @@ const LandingPage = () => {
     { name: "7 Days", snow: null },
   ]);
 
+  const [windUpperStation, setWindUpperStation] = useState({
+    windSpeed: [],
+    windDirection: [],
+  });
+
   const [historicSnowData, setHistoricSnowData] = useState({
     data: {
       labels: [],
@@ -242,6 +260,8 @@ const LandingPage = () => {
       getWeatherStationData(state.selectedOption.upperStation).then(
         (result) => {
           let upperData = result;
+          console.log(upperData);
+
           setUpperStationData(upperData);
         }
       );
@@ -335,6 +355,23 @@ const LandingPage = () => {
       getNewLastWeekSnowUpperStation &&
       getNewLastWeekSnowUpperStation.reduce((a, b) => a + b, 0);
 
+    const windSpeedUpperStation =
+      lastTwoDaySnowUpperStation &&
+      lastTwoDaySnowUpperStation.map((day) => {
+        return day.windSpeedAvg;
+      });
+
+    const windDirectionUpperStation =
+      lastTwoDaySnowUpperStation &&
+      lastTwoDaySnowUpperStation.map((day) => {
+        return day.windDirAvg;
+      });
+
+    setWindUpperStation({
+      windSpeed: windSpeedUpperStation,
+      windDirection: windDirectionUpperStation,
+    });
+
     setNewSnowUpperStation([
       { name: "24hrs", snow: sumNewSnowUpperStation },
       { name: "48hrs", snow: sumNewTwoDaySnowUpperStation },
@@ -405,6 +442,7 @@ const LandingPage = () => {
 
   const upperStation = upperStationData && upperStationData[0];
   const upperStationTemp = upperStation && upperStation.airTempAvg;
+  const upperStationSnowDepth = upperStation && upperStation.snowHeight;
 
   return (
     <Container selected={state.selectedOption && state.selectedOption.image}>
@@ -477,7 +515,7 @@ const LandingPage = () => {
             type={"7 day"}
           />
           <SnowConditions
-            snow={lowerStationSnowDepth && lowerStationSnowDepth}
+            snow={upperStationSnowDepth && upperStationSnowDepth}
             gridColumn={"9 / span 1"}
             gridRow={"3 / span 1"}
             type={"Base"}
@@ -498,10 +536,19 @@ const LandingPage = () => {
             gridRow={"4 / span 1"}
           />
           <SnowConditions
-            snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
+            snow={lowerStationSnowDepth && lowerStationSnowDepth}
             gridColumn={"9 / span 1"}
             gridRow={"4 / span 1"}
           />
+          <FaWind className="wind-icon" size="2.5em" />
+
+          <WindChart
+            gridRow={"3 / span 1"}
+            gridColumn={"10 / span 2"}
+            windSpeed={windUpperStation && windUpperStation.windSpeed}
+            windDirection={windUpperStation && windUpperStation.windDirection}
+          />
+          <WindChart gridColumn={"10 / span 2"} gridRow={"4 / span 1"} />
           <Chart data={historicSnowData.data} />
         </Fragment>
       )}

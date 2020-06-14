@@ -8,7 +8,7 @@ const AltitudeStyles = styled("div")`
   align-self: center;
 
   .elevation {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 `;
 
