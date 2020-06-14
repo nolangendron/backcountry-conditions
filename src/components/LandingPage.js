@@ -9,7 +9,7 @@ import duffey from "../images/duffey.webp";
 import manning from "../images/manning.webp";
 import SplitText from "./SplitText";
 import Select from "react-select";
-import Altitude from "./Altitude";
+import Altitude from "./Altitude/Altitude";
 import Temperature from "./Temperature";
 import SnowConditions from "./SnowConditions";
 import {

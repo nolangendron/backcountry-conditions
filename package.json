@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test",
     "deploy": "yarn run build && aws s3 cp dist/ s3://bcbackcountryweather.com --recursive",
     "eject": "react-scripts eject"
   },
@@ -27,6 +28,7 @@
     "react-icons": "^3.10.0",
     "react-scripts": "^3.4.0",
     "react-select": "^3.1.0",
+    "react-test-renderer": "^16.13.1",
     "react-transition-group": "^4.4.1"
   },
   "eslintConfig": {
