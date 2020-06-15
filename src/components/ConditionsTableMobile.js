@@ -255,7 +255,11 @@ const ConditionsTableMobile = ({
         windSpeed={windSpeedLower && windSpeedLower}
         windDirection={windDirectionLower && windDirectionLower}
       />
-      <Chart data={chartData} />
+      <Chart
+        gridColumn={"1 / span 3"}
+        gridRow={"15 / span 1"}
+        data={chartData}
+      />
     </ConditionsTableMobileStyles>
   );
 };

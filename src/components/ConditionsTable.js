@@ -231,7 +231,11 @@ const ConditionsTable = ({
         windSpeed={windSpeedLower && windSpeedLower}
         windDirection={windDirectionLower && windDirectionLower}
       />
-      <Chart data={chartData} />
+      <Chart
+        gridColumn={"1 / span 8"}
+        gridRow={"7 / span 1"}
+        data={chartData}
+      />
     </ConditionsTableStyles>
   );
 };

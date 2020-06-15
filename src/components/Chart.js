@@ -3,13 +3,13 @@ import styled from "@emotion/styled";
 import { Line } from "react-chartjs-2";
 
 const ChartStyles = styled("div")`
-  grid-column: 1 / span 3;
-  grid-row: 15 / span 1;
+  grid-column: ${(props) => props.gridColumn && props.gridColumn};
+  grid-row: ${(props) => props.gridRow && props.gridRow};
   padding-bottom: 10px;
 `;
-export const Chart = ({ data }) => {
+export const Chart = ({ data, gridColumn, gridRow }) => {
   return (
-    <ChartStyles>
+    <ChartStyles gridColumn={gridColumn} gridRow={gridRow}>
       <Line
         data={data}
         options={{
