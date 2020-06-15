@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import styled from "@emotion/styled";
 import { getWeatherStationData } from "../utils/apiCalls";
 import { calNewSnowLastDay } from "../utils/calNewSnowLastDay";
@@ -9,8 +9,6 @@ import duffey from "../images/duffey.webp";
 import manning from "../images/manning.webp";
 import SplitText from "./SplitText";
 import Select from "react-select";
-// import { Chart } from "./Chart.js";
-// import WindChart from "./WindChart.js";
 import ConditionsTable from "./ConditionsTable";
 
 const Container = styled("div")`
@@ -196,7 +194,6 @@ const LandingPage = () => {
       getWeatherStationData(state.selectedOption.lowerStation).then(
         (result) => {
           let lowerData = result;
-          console.log(lowerData);
           setLowerStationData(lowerData);
         }
       );
@@ -423,41 +420,43 @@ const LandingPage = () => {
         );
       })}
       {selectedOption.value !== "none" && (
-        <ConditionsTable
-          elevationUpper={stationNumbers[station && station].elevationUpper}
-          elevationLower={stationNumbers[station && station].elevationLower}
-          temperatureUpper={upperStationTemp && upperStationTemp}
-          temperatureLower={lowerStationTemp && lowerStationTemp}
-          snow24Upper={
-            newSnowUpperStation[0].snow && newSnowUpperStation[0].snow
-          }
-          snow24Lower={
-            newSnowLowerStation[0].snow && newSnowLowerStation[0].snow
-          }
-          snow48Upper={
-            newSnowUpperStation[1].snow && newSnowUpperStation[1].snow
-          }
-          snow48Lower={
-            newSnowLowerStation[1].snow && newSnowLowerStation[1].snow
-          }
-          snow7Upper={
-            newSnowUpperStation[2].snow && newSnowUpperStation[2].snow
-          }
-          snow7Lower={
-            newSnowLowerStation[2].snow && newSnowLowerStation[2].snow
-          }
-          snowBaseUpper={upperStationSnowDepth && upperStationSnowDepth}
-          snowBaseLower={lowerStationSnowDepth && lowerStationSnowDepth}
-          windSpeedUpper={windUpperStation && windUpperStation.windSpeed}
-          windDirectionUpper={
-            windUpperStation && windUpperStation.windDirection
-          }
-          windSpeedLower={windLowerStation && windLowerStation.windSpeed}
-          windDirectionLower={
-            windLowerStation && windLowerStation.windDirection
-          }
-        />
-        //   <Chart data={historicSnowData.data} />
+        <Fragment>
+          <ConditionsTable
+            elevationUpper={stationNumbers[station && station].elevationUpper}
+            elevationLower={stationNumbers[station && station].elevationLower}
+            temperatureUpper={upperStationTemp && upperStationTemp}
+            temperatureLower={lowerStationTemp && lowerStationTemp}
+            snow24Upper={
+              newSnowUpperStation[0].snow && newSnowUpperStation[0].snow
+            }
+            snow24Lower={
+              newSnowLowerStation[0].snow && newSnowLowerStation[0].snow
+            }
+            snow48Upper={
+              newSnowUpperStation[1].snow && newSnowUpperStation[1].snow
+            }
+            snow48Lower={
+              newSnowLowerStation[1].snow && newSnowLowerStation[1].snow
+            }
+            snow7Upper={
+              newSnowUpperStation[2].snow && newSnowUpperStation[2].snow
+            }
+            snow7Lower={
+              newSnowLowerStation[2].snow && newSnowLowerStation[2].snow
+            }
+            snowBaseUpper={upperStationSnowDepth && upperStationSnowDepth}
+            snowBaseLower={lowerStationSnowDepth && lowerStationSnowDepth}
+            windSpeedUpper={windUpperStation && windUpperStation.windSpeed}
+            windDirectionUpper={
+              windUpperStation && windUpperStation.windDirection
+            }
+            windSpeedLower={windLowerStation && windLowerStation.windSpeed}
+            windDirectionLower={
+              windLowerStation && windLowerStation.windDirection
+            }
+            chartData={historicSnowData.data}
+          />
+        </Fragment>
       )}
     </Container>
   );

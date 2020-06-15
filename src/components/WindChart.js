@@ -10,22 +10,21 @@ const Wind = styled("div")`
   align-self: center;
 
   .locationArrow {
-    margin-left: 20px;
-    font-size: 2em;
+    font-size: 1.5em;
+    margin-right: 10px;
     cursor: pointer;
   }
 
   .windSpeed {
+    width: 20px;
+    margin-right: 5px;
     display: inline-block;
-
-    margin-left: 20px;
     font-size: 1.2em;
   }
 
   .km {
     display: inline-block;
     font-size: 1em;
-    margin-left: 20px;
   }
 `;
 
@@ -81,8 +80,8 @@ export const WindChart = ({
         icon={faArrowUp}
         onClick={() => windDirectionLastTwoDays(windDirection, windSpeed)}
       />
-      <span className="windSpeed">{speed.data && speed.data}</span>
-      <span className="km">km/h</span>
+      <h6 className="windSpeed">{speed.data && speed.data}</h6>
+      <h6 className="km">km/h</h6>
     </Wind>
   );
 };

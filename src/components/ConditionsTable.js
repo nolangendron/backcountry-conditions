@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
+import WindChart from "./WindChart.js";
+import { Chart } from "./Chart.js";
 
 const center = css`
   align-self: center;
@@ -26,9 +28,10 @@ const ConditionsTableStyles = styled("div")`
   justify-self: center;
   background-color: white;
   width: 650px;
+  height: auto;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 60px 60px 60px 1fr;
 
   .elevation-title {
     grid-column: 1 / span 1;
@@ -137,6 +140,12 @@ const ConditionsTableStyles = styled("div")`
     ${lower}
     ${center}
   }
+
+  .wind-title {
+    grid-column: 7 / span 2;
+    ${titles}
+    ${center}
+  }
 `;
 
 const ConditionsTable = ({
@@ -156,6 +165,7 @@ const ConditionsTable = ({
   windDirectionUpper,
   windSpeedLower,
   windDirectionLower,
+  chartData,
 }) => {
   return (
     <ConditionsTableStyles>
@@ -184,8 +194,19 @@ const ConditionsTable = ({
       <h6 className="snowBase-upper">{snowBaseUpper}cm</h6>
       <h6 className="snowBase-lower">{snowBaseLower}cm</h6>
       <h5 className="wind-title">Wind</h5>
-      <h6 className="wind-upper">{snowBaseUpper}</h6>
-      <h6 className="wind-lower">{snowBaseLower}</h6>
+      <WindChart
+        gridColumn={"7 / span 2"}
+        gridRow={"2 / span 1"}
+        windSpeed={windSpeedUpper && windSpeedUpper}
+        windDirection={windDirectionUpper && windDirectionUpper}
+      />
+      <WindChart
+        gridColumn={"7 / span 2"}
+        gridRow={"3 / span 1"}
+        windSpeed={windSpeedLower && windSpeedLower}
+        windDirection={windDirectionLower && windDirectionLower}
+      />
+      <Chart data={chartData} />
     </ConditionsTableStyles>
   );
 };

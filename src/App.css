@@ -41,8 +41,4 @@ h6 {
 .main-container {
   max-width: 1400px;
   margin: 0 auto;
-  /* display: grid;
-  padding: 0;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 40% 8% 8% 8% 1fr; */
 }
