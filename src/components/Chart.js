@@ -4,6 +4,7 @@ import { Line } from "react-chartjs-2";
 
 const ChartStyles = styled("div")`
   grid-column: 1 / span 8;
+  padding-bottom: 10px;
 `;
 export const Chart = ({ data }) => {
   return (

@@ -76,7 +76,7 @@ export const WindChart = ({
       <FontAwesomeIcon
         className="locationArrow"
         transform={{ rotate: rotation.degree }}
-        color="red"
+        color="#303030"
         icon={faArrowUp}
         onClick={() => windDirectionLastTwoDays(windDirection, windSpeed)}
       />

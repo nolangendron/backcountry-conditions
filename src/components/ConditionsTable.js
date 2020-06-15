@@ -22,6 +22,7 @@ const lower = css`
 
 const ConditionsTableStyles = styled("div")`
   margin-top: 60px;
+  margin-bottom: 20px;
   grid-column: 4 / span 6;
   grid-row: 3 span 1;
   align-self: start;
