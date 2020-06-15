@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import { render, cleanup } from "@testing-library/react";
+import App from "../App";
+import { cleanup } from "@testing-library/react";
 
 import renderer from "react-test-renderer";
 
