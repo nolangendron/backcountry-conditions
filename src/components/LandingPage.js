@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { getWeatherStationData } from "../utils/apiCalls";
 import { calNewSnowLastDay } from "../utils/calNewSnowLastDay";
@@ -9,25 +9,14 @@ import duffey from "../images/duffey.webp";
 import manning from "../images/manning.webp";
 import SplitText from "./SplitText";
 import Select from "react-select";
-import Altitude from "./Altitude/Altitude";
-import Temperature from "./Temperature";
-import SnowConditions from "./SnowConditions";
-import {
-  FaTemperatureLow,
-  FaMountain,
-  FaRegSnowflake,
-  FaWind,
-} from "react-icons/fa";
-import { Chart } from "./Chart.js";
-import WindChart from "./WindChart.js";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+// import { Chart } from "./Chart.js";
+// import WindChart from "./WindChart.js";
+import ConditionsTable from "./ConditionsTable";
 
 const Container = styled("div")`
   display: grid;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 0;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 42vh 60px 1fr;
@@ -41,7 +30,7 @@ const Container = styled("div")`
     align-self: start;
     justify-self: center;
     min-width: 200px;
-    width: 360px;
+    width: 350px;
     font-family: "Roboto", sans-serif;
   }
 
@@ -55,6 +44,8 @@ const Container = styled("div")`
     -moz-transition: opacity 0.5s ease-in-out;
     -o-transition: opacity 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
+    width: 100%;
+    height: 100%;
   }
 
   .bgImage2.active {
@@ -93,8 +84,6 @@ const Container = styled("div")`
       ),
       url(${coquihalla}) no-repeat;
     background-size: cover;
-    width: 100%;
-    height: 50vh;
   }
 
   .bgImage2.active.duffey {
@@ -112,8 +101,6 @@ const Container = styled("div")`
       ),
       url(${duffey}) no-repeat;
     background-size: cover;
-    width: 100%;
-    height: 50vh;
   }
 
   .bgImage2.active.manningPark {
@@ -131,51 +118,6 @@ const Container = styled("div")`
       ),
       url(${manning}) no-repeat;
     background-size: cover;
-    width: 100%;
-    height: 50vh;
-  }
-
-  .altitude-icon {
-    grid-column: 4 / span 1;
-    grid-row: 2 / span 1;
-    justify-self: center;
-    align-self: end;
-  }
-
-  .temp-icon {
-    grid-column: 5 / span 1;
-    grid-row: 2 / span 1;
-    justify-self: center;
-    align-self: end;
-  }
-
-  .snow-icon {
-    grid-column: 6 / span 4;
-    grid-row: 2 / span 1;
-    justify-self: center;
-    align-self: end;
-  }
-
-  .wind-icon {
-    grid-column: 10 / span 2;
-    grid-row: 2 / span 1;
-    justify-self: center;
-    align-self: end;
-  }
-
-  .path {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    animation: dash 1s linear alternate forwards;
-  }
-
-  @keyframes dash {
-    from {
-      stroke-dashoffset: 1;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
   }
 `;
 
@@ -481,84 +423,41 @@ const LandingPage = () => {
         );
       })}
       {selectedOption.value !== "none" && (
-        <Fragment>
-          <FaMountain className="altitude-icon" size="2.5em" />
-
-          <Altitude
-            elevation={stationNumbers[station && station].elevationUpper}
-          />
-          <Altitude
-            elevation={stationNumbers[station && station].elevationLower}
-            elevationLower={true}
-          />
-          <FaTemperatureLow className="temp-icon" size="2.5em" />
-
-          <Temperature temperature={upperStationTemp && upperStationTemp} />
-          <Temperature
-            temperature={lowerStationTemp && lowerStationTemp}
-            temperatureLower={true}
-          />
-          <FaRegSnowflake className="snow-icon" size="2.5em" />
-          <SnowConditions
-            snow={newSnowUpperStation[0].snow && newSnowUpperStation[0].snow}
-            gridColumn={"6 / span 1"}
-            gridRow={"3 / span 1"}
-            type={"24hrs"}
-          />
-          <SnowConditions
-            snow={newSnowUpperStation[1].snow && newSnowUpperStation[1].snow}
-            gridColumn={"7 / span 1"}
-            gridRow={"3 / span 1"}
-            type={"48hrs"}
-          />
-          <SnowConditions
-            snow={newSnowUpperStation[2].snow && newSnowUpperStation[2].snow}
-            gridColumn={"8 / span 1"}
-            gridRow={"3 / span 1"}
-            type={"7 day"}
-          />
-          <SnowConditions
-            snow={upperStationSnowDepth && upperStationSnowDepth}
-            gridColumn={"9 / span 1"}
-            gridRow={"3 / span 1"}
-            type={"Base"}
-          />
-          <SnowConditions
-            snow={newSnowLowerStation[0].snow && newSnowLowerStation[0].snow}
-            gridColumn={"6 / span 1"}
-            gridRow={"4 / span 1"}
-          />
-          <SnowConditions
-            snow={newSnowLowerStation[1].snow && newSnowLowerStation[1].snow}
-            gridColumn={"7 / span 1"}
-            gridRow={"4 / span 1"}
-          />
-          <SnowConditions
-            snow={newSnowLowerStation[2].snow && newSnowLowerStation[2].snow}
-            gridColumn={"8 / span 1"}
-            gridRow={"4 / span 1"}
-          />
-          <SnowConditions
-            snow={lowerStationSnowDepth && lowerStationSnowDepth}
-            gridColumn={"9 / span 1"}
-            gridRow={"4 / span 1"}
-          />
-          <FaWind className="wind-icon" size="2.5em" />
-
-          <WindChart
-            gridRow={"3 / span 1"}
-            gridColumn={"10 / span 2"}
-            windSpeed={windUpperStation && windUpperStation.windSpeed}
-            windDirection={windUpperStation && windUpperStation.windDirection}
-          />
-          <WindChart
-            gridColumn={"10 / span 2"}
-            gridRow={"4 / span 1"}
-            windSpeed={windLowerStation && windLowerStation.windSpeed}
-            windDirection={windLowerStation && windLowerStation.windDirection}
-          />
-          <Chart data={historicSnowData.data} />
-        </Fragment>
+        <ConditionsTable
+          elevationUpper={stationNumbers[station && station].elevationUpper}
+          elevationLower={stationNumbers[station && station].elevationLower}
+          temperatureUpper={upperStationTemp && upperStationTemp}
+          temperatureLower={lowerStationTemp && lowerStationTemp}
+          snow24Upper={
+            newSnowUpperStation[0].snow && newSnowUpperStation[0].snow
+          }
+          snow24Lower={
+            newSnowLowerStation[0].snow && newSnowLowerStation[0].snow
+          }
+          snow48Upper={
+            newSnowUpperStation[1].snow && newSnowUpperStation[1].snow
+          }
+          snow48Lower={
+            newSnowLowerStation[1].snow && newSnowLowerStation[1].snow
+          }
+          snow7Upper={
+            newSnowUpperStation[2].snow && newSnowUpperStation[2].snow
+          }
+          snow7Lower={
+            newSnowLowerStation[2].snow && newSnowLowerStation[2].snow
+          }
+          snowBaseUpper={upperStationSnowDepth && upperStationSnowDepth}
+          snowBaseLower={lowerStationSnowDepth && lowerStationSnowDepth}
+          windSpeedUpper={windUpperStation && windUpperStation.windSpeed}
+          windDirectionUpper={
+            windUpperStation && windUpperStation.windDirection
+          }
+          windSpeedLower={windLowerStation && windLowerStation.windSpeed}
+          windDirectionLower={
+            windLowerStation && windLowerStation.windDirection
+          }
+        />
+        //   <Chart data={historicSnowData.data} />
       )}
     </Container>
   );
