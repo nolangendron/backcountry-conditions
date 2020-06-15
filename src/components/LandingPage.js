@@ -10,6 +10,7 @@ import manning from "../images/manning.webp";
 import SplitText from "./SplitText";
 import Select from "react-select";
 import ConditionsTable from "./ConditionsTable";
+import ConditionsTableMobile from "./ConditionsTableMobile";
 
 const Container = styled("div")`
   display: grid;
@@ -399,6 +400,9 @@ const LandingPage = () => {
   const upperStationTemp = upperStation && upperStation.airTempAvg;
   const upperStationSnowDepth = upperStation && upperStation.snowHeight;
 
+  let width = window.innerWidth;
+  console.log(width);
+
   return (
     <Container selected={state.selectedOption && state.selectedOption.image}>
       <SplitText copy="BC Backcountry Weather" role="heading" count={0.5} />
@@ -421,41 +425,79 @@ const LandingPage = () => {
       })}
       {selectedOption.value !== "none" && (
         <Fragment>
-          <ConditionsTable
-            elevationUpper={stationNumbers[station && station].elevationUpper}
-            elevationLower={stationNumbers[station && station].elevationLower}
-            temperatureUpper={upperStationTemp && upperStationTemp}
-            temperatureLower={lowerStationTemp && lowerStationTemp}
-            snow24Upper={
-              newSnowUpperStation[0].snow && newSnowUpperStation[0].snow
-            }
-            snow24Lower={
-              newSnowLowerStation[0].snow && newSnowLowerStation[0].snow
-            }
-            snow48Upper={
-              newSnowUpperStation[1].snow && newSnowUpperStation[1].snow
-            }
-            snow48Lower={
-              newSnowLowerStation[1].snow && newSnowLowerStation[1].snow
-            }
-            snow7Upper={
-              newSnowUpperStation[2].snow && newSnowUpperStation[2].snow
-            }
-            snow7Lower={
-              newSnowLowerStation[2].snow && newSnowLowerStation[2].snow
-            }
-            snowBaseUpper={upperStationSnowDepth && upperStationSnowDepth}
-            snowBaseLower={lowerStationSnowDepth && lowerStationSnowDepth}
-            windSpeedUpper={windUpperStation && windUpperStation.windSpeed}
-            windDirectionUpper={
-              windUpperStation && windUpperStation.windDirection
-            }
-            windSpeedLower={windLowerStation && windLowerStation.windSpeed}
-            windDirectionLower={
-              windLowerStation && windLowerStation.windDirection
-            }
-            chartData={historicSnowData.data}
-          />
+          {width < 390 ? (
+            <ConditionsTableMobile
+              elevationUpper={stationNumbers[station && station].elevationUpper}
+              elevationLower={stationNumbers[station && station].elevationLower}
+              temperatureUpper={upperStationTemp && upperStationTemp}
+              temperatureLower={lowerStationTemp && lowerStationTemp}
+              snow24Upper={
+                newSnowUpperStation[0].snow && newSnowUpperStation[0].snow
+              }
+              snow24Lower={
+                newSnowLowerStation[0].snow && newSnowLowerStation[0].snow
+              }
+              snow48Upper={
+                newSnowUpperStation[1].snow && newSnowUpperStation[1].snow
+              }
+              snow48Lower={
+                newSnowLowerStation[1].snow && newSnowLowerStation[1].snow
+              }
+              snow7Upper={
+                newSnowUpperStation[2].snow && newSnowUpperStation[2].snow
+              }
+              snow7Lower={
+                newSnowLowerStation[2].snow && newSnowLowerStation[2].snow
+              }
+              snowBaseUpper={upperStationSnowDepth && upperStationSnowDepth}
+              snowBaseLower={lowerStationSnowDepth && lowerStationSnowDepth}
+              windSpeedUpper={windUpperStation && windUpperStation.windSpeed}
+              windDirectionUpper={
+                windUpperStation && windUpperStation.windDirection
+              }
+              windSpeedLower={windLowerStation && windLowerStation.windSpeed}
+              windDirectionLower={
+                windLowerStation && windLowerStation.windDirection
+              }
+              chartData={historicSnowData.data}
+            />
+          ) : (
+            <ConditionsTable
+              elevationUpper={stationNumbers[station && station].elevationUpper}
+              elevationLower={stationNumbers[station && station].elevationLower}
+              temperatureUpper={upperStationTemp && upperStationTemp}
+              temperatureLower={lowerStationTemp && lowerStationTemp}
+              snow24Upper={
+                newSnowUpperStation[0].snow && newSnowUpperStation[0].snow
+              }
+              snow24Lower={
+                newSnowLowerStation[0].snow && newSnowLowerStation[0].snow
+              }
+              snow48Upper={
+                newSnowUpperStation[1].snow && newSnowUpperStation[1].snow
+              }
+              snow48Lower={
+                newSnowLowerStation[1].snow && newSnowLowerStation[1].snow
+              }
+              snow7Upper={
+                newSnowUpperStation[2].snow && newSnowUpperStation[2].snow
+              }
+              snow7Lower={
+                newSnowLowerStation[2].snow && newSnowLowerStation[2].snow
+              }
+              snowBaseUpper={upperStationSnowDepth && upperStationSnowDepth}
+              snowBaseLower={lowerStationSnowDepth && lowerStationSnowDepth}
+              windSpeedUpper={windUpperStation && windUpperStation.windSpeed}
+              windDirectionUpper={
+                windUpperStation && windUpperStation.windDirection
+              }
+              windSpeedLower={windLowerStation && windLowerStation.windSpeed}
+              windDirectionLower={
+                windLowerStation && windLowerStation.windDirection
+              }
+              chartData={historicSnowData.data}
+            />
+          )}
         </Fragment>
       )}
     </Container>
