@@ -13,18 +13,24 @@ const titles = css`
 `;
 
 const upper = css`
-  grid-row: 2 / span 1;
+  grid-row: 3 / span 1;
 `;
 
 const lower = css`
-  grid-row: 3 / span 1;
+  grid-row: 5 / span 1;
+`;
+
+const line = css`
+  grid-column: 1 / span 8;
+  background-color: #e5e5e5;
+  margin: 0;
 `;
 
 const ConditionsTableStyles = styled("div")`
   margin-top: 60px;
   margin-bottom: 20px;
   grid-column: 4 / span 6;
-  grid-row: 3 span 1;
+  grid-row: 3 / span 1;
   align-self: start;
   justify-self: center;
   background-color: white;
@@ -32,112 +38,112 @@ const ConditionsTableStyles = styled("div")`
   height: auto;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 60px 60px 60px 1fr;
+  grid-template-rows: 60px 1px 60px 1px 60px 1px 1fr;
 
   .elevation-title {
-    grid-column: 1 / span 1;
+    /* grid-column: 1 / span 1; */
     ${titles}
     ${center}
   }
 
   .elevation-upper {
-    grid-column: 1 / span 1;
+    /* grid-column: 1 / span 1; */
     ${upper}
     ${center}
   }
 
   .elevation-lower {
-    grid-column: 1 / span 1;
+    /* grid-column: 1 / span 1; */
     ${lower}
     ${center}
   }
 
   .temperature-title {
-    grid-column: 2 / span 1;
+    /* grid-column: 2 / span 1; */
     ${titles}
     ${center}
   }
 
   .temperature-upper {
-    grid-column: 2 / span 1;
+    /* grid-column: 2 / span 1; */
     ${upper}
     ${center}
   }
 
   .temperature-lower {
-    grid-column: 2 / span 1;
+    /* grid-column: 2 / span 1; */
     ${lower}
     ${center}
   }
 
   .snow24-title {
-    grid-column: 3 / span 1;
+    /* grid-column: 3 / span 1; */
     ${titles}
     ${center}
   }
 
   .snow24-upper {
-    grid-column: 3 / span 1;
+    /* grid-column: 3 / span 1; */
     ${upper}
     ${center}
   }
 
   .snow24-lower {
-    grid-column: 3 / span 1;
+    /* grid-column: 3 / span 1; */
     ${lower}
     ${center}
   }
 
   .snow48-title {
-    grid-column: 4 / span 1;
+    /* grid-column: 4 / span 1; */
     ${titles}
     ${center}
   }
 
   .snow48-upper {
-    grid-column: 4 / span 1;
+    /* grid-column: 4 / span 1; */
     ${upper}
     ${center}
   }
 
   .snow48-lower {
-    grid-column: 4 / span 1;
+    /* grid-column: 4 / span 1; */
     ${lower}
     ${center}
   }
 
   .snow7-title {
-    grid-column: 5 / span 1;
+    /* grid-column: 5 / span 1; */
     ${titles}
     ${center}
   }
 
   .snow7-upper {
-    grid-column: 5 / span 1;
+    /* grid-column: 5 / span 1; */
     ${upper}
     ${center}
   }
 
   .snow7-lower {
-    grid-column: 5 / span 1;
+    /* grid-column: 5 / span 1; */
     ${lower}
     ${center}
   }
 
   .snowBase-title {
-    grid-column: 6 / span 1;
+    /* grid-column: 6 / span 1; */
     ${titles}
     ${center}
   }
 
   .snowBase-upper {
-    grid-column: 6 / span 1;
+    /* grid-column: 6 / span 1; */
     ${upper}
     ${center}
   }
 
   .snowBase-lower {
-    grid-column: 6 / span 1;
+    /* grid-column: 6 / span 1; */
     ${lower}
     ${center}
   }
@@ -146,6 +152,21 @@ const ConditionsTableStyles = styled("div")`
     grid-column: 7 / span 2;
     ${titles}
     ${center}
+  }
+
+  .line-one {
+    grid-row: 2 / span 1;
+    ${line}
+  }
+
+  .line-two {
+    grid-row: 4 / span 1;
+    ${line}
+  }
+
+  .line-three {
+    grid-row: 6 / span 1;
+    ${line}
   }
 `;
 
@@ -170,6 +191,9 @@ const ConditionsTable = ({
 }) => {
   return (
     <ConditionsTableStyles>
+      <hr className="line-one"></hr>
+      <hr className="line-two"></hr>
+      <hr className="line-three"></hr>
       <h5 className="elevation-title">Elevation</h5>
       <h6 className="elevation-upper">{elevationUpper}</h6>
       <h6 className="elevation-lower">{elevationLower}</h6>
@@ -197,13 +221,13 @@ const ConditionsTable = ({
       <h5 className="wind-title">Wind</h5>
       <WindChart
         gridColumn={"7 / span 2"}
-        gridRow={"2 / span 1"}
+        gridRow={"3 / span 1"}
         windSpeed={windSpeedUpper && windSpeedUpper}
         windDirection={windDirectionUpper && windDirectionUpper}
       />
       <WindChart
         gridColumn={"7 / span 2"}
-        gridRow={"3 / span 1"}
+        gridRow={"5 / span 1"}
         windSpeed={windSpeedLower && windSpeedLower}
         windDirection={windDirectionLower && windDirectionLower}
       />
