@@ -20,28 +20,29 @@ import {
 } from "react-icons/fa";
 import { Chart } from "./Chart.js";
 import WindChart from "./WindChart.js";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 const Container = styled("div")`
   display: grid;
-  margin: 0;
+  margin-left: 30px;
+  margin-right: 30px;
   padding: 0;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 50vh 8% 15% 15% 1fr;
+  grid-template-rows: 42vh 60px 1fr;
+  column-gap: 30px;
   height: 100vh;
   overflow: scroll;
 
-  .left-container {
+  .select {
     grid-column: 5 / span 4;
-    grid-row: 1 / span 1;
-  }
-
-  .title {
-    margin-top: 20%;
-    font-size: 2em;
-  }
-
-  .title h1 {
-    margin: 0;
+    grid-row: 2 span 1;
+    align-self: start;
+    justify-self: center;
+    min-width: 200px;
+    width: 360px;
+    font-family: "Roboto", sans-serif;
   }
 
   .bgImage2 {
@@ -134,11 +135,6 @@ const Container = styled("div")`
     height: 50vh;
   }
 
-  .select {
-    margin-top: 20px;
-    width: 300px;
-  }
-
   .altitude-icon {
     grid-column: 4 / span 1;
     grid-row: 2 / span 1;
@@ -190,7 +186,7 @@ const images = [
   { value: "manningPark", label: "Manning Park", image: manning },
 ];
 const options = [
-  { value: "none", label: "Select Area...", image: imgLandingPage },
+  { value: "none", label: "Select Area", image: imgLandingPage },
   {
     value: "coquihalla",
     label: "Coquihalla",
@@ -466,25 +462,13 @@ const LandingPage = () => {
 
   return (
     <Container selected={state.selectedOption && state.selectedOption.image}>
-      <div className="left-container">
-        <div className="title">
-          <h1>
-            <SplitText copy="BC" role="heading" count={0.5} />
-          </h1>
-          <h1>
-            <SplitText copy="Backcountry" role="heading" count={0.7} />
-          </h1>
-          <h1>
-            <SplitText copy="Weather" role="heading" count={1.6} />
-          </h1>
-        </div>
-        <div className="select">
-          <Select
-            value={selectedOption}
-            onChange={handleChange}
-            options={options}
-          />
-        </div>
+      <SplitText copy="BC Backcountry Weather" role="heading" count={0.5} />
+      <div className="select">
+        <Select
+          value={selectedOption}
+          onChange={handleChange}
+          options={options}
+        />
       </div>
       {images.map((imgClass, index) => {
         return (
@@ -496,7 +480,6 @@ const LandingPage = () => {
           ></div>
         );
       })}
-
       {selectedOption.value !== "none" && (
         <Fragment>
           <FaMountain className="altitude-icon" size="2.5em" />

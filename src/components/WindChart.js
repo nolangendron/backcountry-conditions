@@ -16,11 +16,14 @@ const Wind = styled("div")`
   }
 
   .windSpeed {
+    display: inline-block;
+
     margin-left: 20px;
     font-size: 1.2em;
   }
 
   .km {
+    display: inline-block;
     font-size: 1em;
     margin-left: 20px;
   }
@@ -35,45 +38,31 @@ export const WindChart = ({
   const [rotation, setRotation] = useState({
     degree: 0,
   });
-  const [chartData, setChartData] = useState({
-    data: [0, 360],
+  const [speed, setSpeed] = useState({
+    data: 0,
   });
-
-  const data = {
-    datasets: [
-      {
-        labels: ["Red", "Blue"],
-        data: chartData.data,
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-      },
-    ],
-  };
 
   const clearState = () => {
     setRotation({
       degree: 0,
     });
-    setChartData({
-      data: [0, 360],
+    setSpeed({
+      data: 0,
     });
   };
 
   const windDirectionLastTwoDays = (arr1, arr2) => {
     if (arr1 !== undefined) {
-      for (let i = 0; i < arr1.length + 1; i++) {
-        if (i === arr1.length + 1) {
+      for (let i = 0; i < arr1.length; i++) {
+        if (i === arr1.length) {
           clearState();
         } else {
           setTimeout(function timer() {
             setRotation({
               degree: arr1[i],
             });
-            setChartData({
-              data: [arr2[i] * 5, 360],
+            setSpeed({
+              data: [Math.trunc(arr2[i])],
             });
           }, i * 150);
         }
@@ -92,9 +81,7 @@ export const WindChart = ({
         icon={faArrowUp}
         onClick={() => windDirectionLastTwoDays(windDirection, windSpeed)}
       />
-      <span className="windSpeed">
-        {data.datasets[0].data[0] ? data.datasets[0].data[0] / 5 : 0}
-      </span>
+      <span className="windSpeed">{speed.data && speed.data}</span>
       <span className="km">km/h</span>
     </Wind>
   );

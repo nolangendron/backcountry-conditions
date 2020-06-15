@@ -6,8 +6,18 @@
 }
 
 body {
-  font-family: "Raleway", sans-serif;
   margin: 0;
+}
+
+h1 {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 58px;
+  line-height: 70px;
+  text-align: center;
+  letter-spacing: -0.015em;
+  color: #003c8f;
 }
 
 .main-container {

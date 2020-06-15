@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Container = styled("div")`
+const Container = styled("h1")`
+  grid-column: 4 / span 6;
+  grid-row: 1 / span 1;
+  align-self: end;
+  justify-self: center;
+
   .span {
     position: relative;
-    animation: move-text-color 0.01s forwards;
+    animation: move-text-color 0.001s forwards;
     opacity: 0;
   }
 
