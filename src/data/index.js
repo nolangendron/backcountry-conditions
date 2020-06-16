@@ -1,11 +1,9 @@
-import littleBearData from './littleBearData.json';
-import coqSummitData from './coqSummitData.json';
-import cayooshSummitData from './cayooshSummitData.json';
-import blowDownMidData from './blowDownMidData.json';
-import allisonPassData from './allisonPassData.json';
-import foundationMinesData from './foundationMinesData.json';
-// import abbottData from './abbottData.json';
-// import rogersPassData from './rogerPassData.json';
+import littleBearData from "./littleBearData.json";
+import coqSummitData from "./coqSummitData.json";
+import cayooshSummitData from "./cayooshSummitData.json";
+import blowDownMidData from "./blowDownMidData.json";
+import allisonPassData from "./allisonPassData.json";
+import foundationMinesData from "./foundationMinesData.json";
 
 export const data = {
   littleBearData,
@@ -14,6 +12,4 @@ export const data = {
   blowDownMidData,
   allisonPassData,
   foundationMinesData,
-  // abbottData,
-  // rogersPassData
-}
+};

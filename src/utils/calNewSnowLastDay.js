@@ -1,4 +1,4 @@
-export const calNewSnowLastDay = (data) => {
+const calNewSnowLastDay = (data) => {
   let snow = data[0];
   let newSnowArray = [];
   let difference;
@@ -11,3 +11,5 @@ export const calNewSnowLastDay = (data) => {
   }
   return newSnowArray;
 };
+
+export default calNewSnowLastDay;

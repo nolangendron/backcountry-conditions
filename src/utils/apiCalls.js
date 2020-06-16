@@ -1,4 +1,4 @@
-export const getWeatherStationData = async (station) => {
+const getWeatherStationData = async (station) => {
   const url = `https://api.avalanche.ca/weather/stations/${station}/measurements/`;
   try {
     const response = await fetch(url);
@@ -9,3 +9,5 @@ export const getWeatherStationData = async (station) => {
     return [];
   }
 };
+
+export default getWeatherStationData;

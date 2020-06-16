@@ -1,12 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "@emotion/styled";
-import { getWeatherStationData } from "../utils/apiCalls";
-import { calNewSnowLastDay } from "../utils/calNewSnowLastDay";
+import { fonts } from "../styles/index";
+import { calNewSnowLastDay, getWeatherStationData } from "../utils/index";
 import { stationNumbers } from "../data/weatherStationDetails";
-import imgLandingPage from "../images/powder.webp";
-import coquihalla from "../images/coq.webp";
-import duffey from "../images/duffey.webp";
-import manning from "../images/manning.webp";
+import { imgLandingPage, coquihalla, duffey, manning } from "../images/index";
 import SplitText from "./SplitText";
 import Select from "react-select";
 import ConditionsTable from "./ConditionsTable";
@@ -30,7 +27,7 @@ const Container = styled("div")`
     justify-self: center;
     min-width: 200px;
     width: 350px;
-    font-family: "Roboto", sans-serif;
+    font-family: ${fonts.text};
   }
 
   .bgImage2 {
@@ -126,6 +123,7 @@ const images = [
   { value: "duffey", label: "Duffey", image: duffey },
   { value: "manningPark", label: "Manning Park", image: manning },
 ];
+
 const options = [
   { value: "none", label: "Select Area", image: imgLandingPage },
   {
@@ -157,24 +155,20 @@ const LandingPage = () => {
   });
   const [lowerStationData, setLowerStationData] = useState([]);
   const [upperStationData, setUpperStationData] = useState([]);
-
   const [newSnowLowerStation, setNewSnowLowerStation] = useState([
     { name: "24hrs", snow: null },
     { name: "48hrs", snow: null },
     { name: "7 Days", snow: null },
   ]);
-
   const [newSnowUpperStation, setNewSnowUpperStation] = useState([
     { name: "24hrs", snow: null },
     { name: "48hrs", snow: null },
     { name: "7 Days", snow: null },
   ]);
-
   const [windUpperStation, setWindUpperStation] = useState({
     windSpeed: [],
     windDirection: [],
   });
-
   const [windLowerStation, setWindLowerStation] = useState({
     windSpeed: [],
     windDirection: [],
@@ -401,11 +395,10 @@ const LandingPage = () => {
   const upperStationSnowDepth = upperStation && upperStation.snowHeight;
 
   let width = window.innerWidth;
-  console.log(width);
 
   return (
     <Container selected={state.selectedOption && state.selectedOption.image}>
-      <SplitText copy="BC Backcountry Weather" role="heading" count={0.5} />
+      <SplitText copy="BC Backcountry Weather" role="heading" count={0.1} />
       <div className="select">
         <Select
           value={selectedOption}

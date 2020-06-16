@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
+import { colors } from "../styles/index";
 import WindChart from "./WindChart.js";
 import { Chart } from "./Chart.js";
 
@@ -22,7 +23,7 @@ const lower = css`
 
 const line = css`
   grid-column: 1 / span 3;
-  background-color: #e5e5e5;
+  background-color: ${colors.secondary};
   margin: 0;
 `;
 
@@ -33,7 +34,7 @@ const ConditionsTableMobileStyles = styled("div")`
   grid-row: 3 / span 1;
   align-self: start;
   justify-self: center;
-  background-color: white;
+  background-color: ${colors.tableBackground};
   width: 360px;
   height: auto;
   display: grid;
@@ -258,7 +259,7 @@ const ConditionsTableMobile = ({
       <Chart
         gridColumn={"1 / span 3"}
         gridRow={"15 / span 1"}
-        data={chartData}
+        data={chartData && chartData}
       />
     </ConditionsTableMobileStyles>
   );

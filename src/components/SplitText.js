@@ -7,9 +7,9 @@ const Container = styled("h1")`
   align-self: end;
   justify-self: center;
 
-  .span {
+  .char {
     position: relative;
-    animation: move-text-color 0.001s forwards;
+    animation: move-text-color 0.1s forwards;
     opacity: 0;
   }
 
@@ -32,7 +32,7 @@ const SplitText = ({ copy, role, count }) => {
         {copy.split("").map(function (char, index) {
           let style = { animationDelay: count + index / 10 + "s" };
           return (
-            <span className="span" aria-hidden="true" key={index} style={style}>
+            <span className="char" aria-hidden="true" key={index} style={style}>
               {char}
             </span>
           );
