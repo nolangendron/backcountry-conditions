@@ -5,8 +5,9 @@ exports[`matched snapshot 1`] = `
   className="css-1vd5jac"
 >
   <div
-    className="css-12yyxc0"
+    className="css-nrd25c"
     selected="powder.webp"
+    width={1024}
   >
     <h1
       className="css-6s6lk3"
