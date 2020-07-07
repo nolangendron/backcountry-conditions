@@ -11,9 +11,6 @@ import ConditionsTableMobile from "./ConditionsTableMobile";
 
 const Container = styled("div")`
   display: grid;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 0;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 42vh 60px 1fr;
   column-gap: 30px;
@@ -25,8 +22,8 @@ const Container = styled("div")`
     grid-row: 2 span 1;
     align-self: start;
     justify-self: center;
-    min-width: 200px;
-    width: 350px;
+    min-width: 180px;
+    width: 330px;
     font-family: ${fonts.text};
   }
 
@@ -397,7 +394,10 @@ const LandingPage = () => {
   let width = window.innerWidth;
 
   return (
-    <Container selected={state.selectedOption && state.selectedOption.image}>
+    <Container
+      selected={state.selectedOption && state.selectedOption.image}
+      width={width}
+    >
       <SplitText copy="BC Backcountry Weather" role="heading" count={0.1} />
       <div className="select">
         <Select
